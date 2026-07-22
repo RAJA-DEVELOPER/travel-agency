@@ -1,286 +1,310 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" data-theme="light">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Luxe Voyages Customer Dashboard — manage your bookings, itineraries, travel documents, and payments in one place.">
   <title>My Dashboard — Luxe Voyages</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/variables.css"><link rel="stylesheet" href="css/base.css"><link rel="stylesheet" href="css/layout.css"><link rel="stylesheet" href="css/components.css"><link rel="stylesheet" href="css/animations.css"><link rel="stylesheet" href="css/navbar.css"><link rel="stylesheet" href="css/footer.css"><link rel="stylesheet" href="css/dark-mode.css"><link rel="stylesheet" href="css/rtl.css"><link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/dark-mode.css">
+  <link rel="stylesheet" href="css/rtl.css">
   <style>
-    .dash-topbar{background:var(--color-midnight);padding:var(--space-4) 0;border-bottom:1px solid rgba(255,255,255,0.06);}
-    .dash-topbar__inner{display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);}
-    .dash-page{display:grid;grid-template-columns:260px 1fr;min-height:calc(100vh - 64px);background:var(--color-bg-secondary);}
-    @media(max-width:900px){
-      .dash-page{grid-template-columns:1fr;}
-      .dash-sidebar{position:fixed;inset:0 auto 0 0;width:280px;z-index:300;transform:translateX(-100%);transition:transform 0.3s ease;}
-      .dash-sidebar.open{transform:translateX(0);}
-    }
-    .dash-sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:200;}
-    @media(max-width:900px){.dash-sidebar-overlay{display:block;opacity:0;pointer-events:none;transition:opacity 0.3s;}}
-    .dash-sidebar{background:var(--color-midnight);min-height:100%;padding:var(--space-6) 0;}
-    .dash-sidebar__user{padding:var(--space-6) var(--space-5);border-bottom:1px solid rgba(255,255,255,0.06);margin-bottom:var(--space-4);}
-    .dash-sidebar__avatar{width:56px;height:56px;border-radius:50%;background-image: url('https://loremflickr.com/200/200/portrait,face?random=163');background-size:cover;background-position:center;background-color:var(--color-bronze);border:2px solid rgba(212,175,55,0.3);margin-bottom:var(--space-3);}
-    .dash-sidebar__name{font-family:var(--font-display);font-size:var(--fs-h6);color:#fff;display:block;}
-    .dash-sidebar__email{font-size:var(--fs-caption);color:rgba(255,255,255,0.5);}
-    .dash-sidebar__label{font-size:var(--fs-caption);font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,255,0.5);padding:0 var(--space-5);margin-bottom:var(--space-2);}
-    .dash-sidebar__link{display:flex;align-items:center;gap:var(--space-3);padding:var(--space-3) var(--space-5);font-size:var(--fs-body-sm);color:rgba(255,255,255,0.6);transition:all var(--transition-base);cursor:pointer;}
-    .dash-sidebar__link svg{width:18px;height:18px;opacity:0.7;flex-shrink:0;}
-    .dash-sidebar__link:hover,.dash-sidebar__link.active{color:#fff;background:rgba(212,175,55,0.1);}
-    .dash-sidebar__link.active{border-inline-start:2px solid var(--color-gold);color:var(--color-text-gold);}
-    .dash-sidebar__link.active svg{opacity:1;}
-    .dash-sidebar__link.danger{color:rgba(255,100,100,0.7);}
-    .dash-sidebar__link.danger:hover{color:#ff4444;background:rgba(255,68,68,0.08);}
-    .dash-main{padding:var(--space-8);overflow-x:auto;}
-    @media(max-width:640px){.dash-main{padding:var(--space-5);}}
-    .dash-greeting{margin-bottom:var(--space-8);}
-    .dash-greeting__title{font-family:var(--font-display);font-size:var(--fs-h3);color:var(--color-text-primary);margin-bottom:var(--space-1);}
-    .dash-greeting__sub{font-size:var(--fs-body-sm);color:var(--color-text-tertiary);}
-    .dash-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-4);margin-bottom:var(--space-8);}
-    @media(max-width:900px){.dash-kpis{grid-template-columns:repeat(2,1fr);}}
-    @media(max-width:480px){.dash-kpis{grid-template-columns:1fr;}}
-    .kpi{background:var(--color-bg-card);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-5);}
-    .kpi__icon{width:40px;height:40px;border-radius:var(--radius-lg);display:flex;align-items:center;justify-content:center;margin-bottom:var(--space-3);}
-    .kpi__val{font-family:var(--font-display);font-size:var(--fs-h3);color:var(--color-text-primary);line-height:1;}
-    .kpi__label{font-size:var(--fs-caption);color:var(--color-text-tertiary);margin-top:var(--space-1);}
-    .dash-panel{display:none;animation:fadeIn .4s ease;}
-    .dash-panel.active{display:block;}
-    .dash-card{background:var(--color-bg-card);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-6);margin-bottom:var(--space-5);}
-    .dash-card__title{font-family:var(--font-display);font-size:var(--fs-h5);color:var(--color-text-primary);margin-bottom:var(--space-5);}
-    .booking-item{display:flex;align-items:center;gap:var(--space-4);padding:var(--space-4) 0;border-bottom:1px solid var(--color-border);}
-    .booking-item:last-child{border-bottom:none;}
-    .booking-item__img{width:72px;height:56px;border-radius:var(--radius-md);flex-shrink:0;}
-    .booking-item__info{flex:1;min-width:0;}
-    .booking-item__name{font-weight:600;font-size:var(--fs-body-sm);color:var(--color-text-primary);}
-    .booking-item__date{font-size:var(--fs-caption);color:var(--color-text-tertiary);}
-    .booking-item__status{flex-shrink:0;}
-    .status-pill{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:999px;font-size:var(--fs-caption);font-weight:600;}
-    .status-pill--confirmed{background:rgba(6,95,70,0.15);color:#065F46;}
-    .status-pill--pending{background:rgba(212,175,55,0.15);color:var(--color-text-gold);}
-    .status-pill--completed{background:rgba(11,31,58,0.1);color:var(--color-midnight);}
-    [data-theme="dark"] .status-pill--completed{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);}
-    .notif-item{display:flex;gap:var(--space-4);padding:var(--space-4) 0;border-bottom:1px solid var(--color-border);}
-    .notif-item:last-child{border-bottom:none;}
-    .notif-item__dot{width:10px;height:10px;border-radius:50%;background:var(--color-gold);flex-shrink:0;margin-top:6px;}
-    .notif-item__dot--gray{background:var(--color-border);}
-    .notif-item__text{font-size:var(--fs-body-sm);color:var(--color-text-secondary);}
-    .notif-item__time{font-size:var(--fs-caption);color:var(--color-text-tertiary);margin-top:4px;}
-    .progress-track{height:6px;background:var(--color-border);border-radius:999px;overflow:hidden;margin:var(--space-2) 0 var(--space-1);}
-    .progress-fill{height:100%;border-radius:999px;background-color:var(--color-bronze);}
-    .itinerary-day{display:flex;gap:var(--space-4);padding:var(--space-4) 0;border-bottom:1px solid var(--color-border);}
-    .itinerary-day:last-child{border-bottom:none;}
-    .itinerary-day__num{width:48px;height:48px;border-radius:50%;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.3);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:var(--fs-body-lg);color:var(--color-text-gold);flex-shrink:0;}
-    .itinerary-day__content h4{font-weight:600;font-size:var(--fs-body-sm);color:var(--color-text-primary);margin-bottom:4px;}
-    .itinerary-day__content p{font-size:var(--fs-caption);color:var(--color-text-tertiary);}
-    .profile-avatar-area{display:flex;align-items:center;gap:var(--space-5);margin-bottom:var(--space-6);}
-    .profile-avatar-area .avatar-lg{width:80px;height:80px;border-radius:50%;background-image: url('https://loremflickr.com/200/200/portrait,face?random=165');background-size:cover;background-position:center;background-color:var(--color-bronze);border:3px solid rgba(212,175,55,0.3);}
-    .mobile-menu-btn{display:none;background:none;border:none;color:var(--color-text-secondary);cursor:pointer;padding:var(--space-2);}
-    @media(max-width:900px){.mobile-menu-btn{display:flex;align-items:center;gap:var(--space-2);font-size:var(--fs-body-sm);}}
-    .dash-sidebar-toggle{display:none;background:none;border:none;color:#fff;cursor:pointer;padding:var(--space-2);}
-    @media(max-width:900px){.dash-sidebar-toggle{display:block;}}
+    :root { --ds-side: 260px; }
 
-    /* ── Responsive fixes ──────────────────────────────────── */
-    @media(max-width:768px){
-      .dash-topbar__inner{flex-wrap:wrap;}
-      .dash-topbar__inner > a{order:1;}
-      .dash-topbar__inner > div:last-child{order:3;width:100%;justify-content:flex-start;}
-      .dash-greeting__title{font-size:var(--fs-h4);}
-      .booking-item{flex-wrap:wrap;}
-      .booking-item__img{width:100%;height:120px;}
-      .booking-item__status{width:100%;}
-      .dash-card{padding:var(--space-4);}
-      .grid-2{grid-template-columns:1fr !important;}
-      .dashboard-card .grid-2{grid-template-columns:1fr !important;}
-      .dash-topbar__inner > div:last-child .btn--outline{font-size:0.6rem;padding:4px 8px;}
-      .dash-sidebar-toggle{order:-1;}
+    /* ── Layout ── */
+    .ds-wrap { display: grid; grid-template-columns: var(--ds-side) 1fr; min-height: 100vh; background: var(--color-bg-tertiary); }
+
+    /* ── Topbar ── */
+    .ds-bar { background: var(--color-midnight); position: sticky; top: 0; z-index: 1000; }
+    .ds-bar__in { display: flex; align-items: center; justify-content: space-between; height: 54px; padding: 0 1.25rem; }
+    .ds-bar__l { display: flex; align-items: center; gap: .75rem; }
+    .ds-bar__r { display: flex; align-items: center; gap: 6px; }
+    .ds-bar__r .btn--outline { font-size: .7rem; padding: 0 10px; height: 34px; border-color: rgba(255,255,255,0.15); color: rgba(255,255,255,0.6); }
+    .ds-bar__r .btn--outline:hover { border-color: rgba(255,255,255,0.3); color: #fff; }
+
+    .ds-ham { display: none; width: 34px; height: 34px; align-items: center; justify-content: center; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-md); color: rgba(255,255,255,0.8); cursor: pointer; flex-shrink: 0; transition: .25s cubic-bezier(0.32,0.72,0,1); }
+    .ds-ham:hover { background: rgba(255,255,255,0.15); color: var(--color-gold); }
+    .ds-ham svg { width: 18px; height: 18px; display: block; }
+
+    .ds-bar__r .nt { width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-md); color: rgba(255,255,255,0.8); cursor: pointer; transition: .25s cubic-bezier(0.32,0.72,0,1); flex-shrink: 0; }
+    .ds-bar__r .nt:hover { background: rgba(255,255,255,0.15); color: var(--color-gold); }
+    .ds-bar__r .nt svg { width: 18px; height: 18px; display: block; }
+
+    /* ── Sidebar ── */
+    .ds-side { background: var(--color-midnight); padding: var(--space-5) 0; display: flex; flex-direction: column; }
+    .ds-side__u { padding: 0 var(--space-4) var(--space-4); border-bottom: 1px solid rgba(255,255,255,0.06); margin-bottom: var(--space-3); }
+    .ds-side__av { width: 40px; height: 40px; border-radius: 50%; background: var(--color-bronze); border: 2px solid rgba(212,175,55,0.25); margin-bottom: var(--space-1); display: flex; align-items: center; justify-content: center; }
+    .ds-side__av svg { width: 20px; height: 20px; opacity: .7; }
+    .ds-side__nm { font-family: var(--font-display); font-size: var(--fs-h6); color: #fff; display: block; }
+    .ds-side__em { font-size: var(--fs-caption); color: rgba(255,255,255,0.35); display: block; }
+    .ds-side__lb { font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: .15em; color: rgba(255,255,255,0.2); padding: 0 var(--space-4); margin: var(--space-3) 0 var(--space-1); }
+    .ds-side__lk { display: flex; align-items: center; gap: var(--space-3); padding: .5rem .75rem; margin: .1rem .75rem; border-radius: var(--radius-md); font-size: var(--fs-body-sm); color: rgba(255,255,255,0.45); cursor: pointer; border: none; background: none; text-align: start; transition: .2s cubic-bezier(0.32,0.72,0,1); }
+    .ds-side__lk svg { width: 16px; height: 16px; opacity: .5; flex-shrink: 0; }
+    .ds-side__lk:hover { color: #fff; background: rgba(255,255,255,0.06); }
+    .ds-side__lk:hover svg { opacity: .8; }
+    .ds-side__lk._a { background: rgba(212,175,55,0.1); color: var(--color-text-gold); }
+    .ds-side__lk._a svg { opacity: 1; }
+    .ds-side__lk._d { color: rgba(255,100,100,0.5); }
+    .ds-side__lk._d:hover { color: #ff4444; background: rgba(255,68,68,0.08); }
+    .ds-ov { display: none; position: fixed; inset: 0; top: 54px; background: rgba(0,0,0,0.4); z-index: 899; opacity: 0; transition: opacity .3s; pointer-events: none; }
+    .ds-ov.o { display: block; opacity: 1; pointer-events: auto; }
+
+    /* ── Main ── */
+    .ds-main { padding: var(--space-6); width: 100%; box-sizing: border-box; }
+    .ds-pnl { display: none; }
+    .ds-pnl._a { display: block; }
+    .ds-greeting { margin-bottom: var(--space-5); }
+    .ds-greeting h1, .ds-greeting h2 { font-family: var(--font-display); font-size: var(--fs-h3); color: var(--color-text-primary); margin: 0 0 .25rem; line-height: 1.2; }
+    .ds-greeting p { font-size: var(--fs-body-sm); color: var(--color-text-tertiary); margin: 0; }
+
+    /* ── KPI row ── */
+    .ds-kpis { display: grid; grid-template-columns: repeat(4,1fr); gap: var(--space-4); margin-bottom: var(--space-6); }
+    .ds-kpi { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-4); }
+    .ds-kpi__ic { width: 34px; height: 34px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; margin-bottom: var(--space-2); }
+    .ds-kpi__ic svg { width: 17px; height: 17px; }
+    .ds-kpi__v { font-family: var(--font-display); font-size: var(--fs-h4); color: var(--color-text-primary); line-height: 1; }
+    .ds-kpi__l { font-size: var(--fs-caption); color: var(--color-text-tertiary); margin-top: var(--space-1); }
+
+    /* ── Cards ── */
+    .ds-card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: var(--space-5); margin-bottom: var(--space-5); }
+    .ds-card__t { font-family: var(--font-display); font-size: var(--fs-h5); color: var(--color-text-primary); margin-bottom: var(--space-4); }
+
+    /* ── Booking Item ── */
+    .ds-bi { display: flex; align-items: center; gap: var(--space-4); padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border); }
+    .ds-bi:last-child { border-bottom: none; }
+    .ds-bi__im { width: 64px; height: 48px; border-radius: var(--radius-md); flex-shrink: 0; background-size: cover; background-position: center; }
+    .ds-bi__in { flex: 1; min-width: 0; }
+    .ds-bi__n { font-weight: 600; font-size: var(--fs-body-sm); color: var(--color-text-primary); }
+    .ds-bi__d { font-size: var(--fs-caption); color: var(--color-text-tertiary); }
+    .ds-bi__s { flex-shrink: 0; }
+    .s-pill { display: inline-flex; padding: 2px 10px; border-radius: 999px; font-size: var(--fs-caption); font-weight: 600; }
+    .s-pill--c { background: rgba(6,95,70,0.12); color: #065F46; }
+    .s-pill--p { background: rgba(212,175,55,0.12); color: var(--color-text-gold); }
+    .s-pill--d { background: rgba(11,31,58,0.08); color: var(--color-midnight); }
+    [data-theme="dark"] .s-pill--d { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.6); }
+
+    .pr-tr { height: 5px; background: var(--color-border); border-radius: 999px; overflow: hidden; margin: var(--space-2) 0 var(--space-1); }
+    .pr-fl { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--color-bronze), var(--color-gold)); }
+
+    .ds-ni { display: flex; gap: var(--space-3); padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border); }
+    .ds-ni:last-child { border-bottom: none; }
+    .ds-ni__d { width: 7px; height: 7px; border-radius: 50%; background: var(--color-gold); flex-shrink: 0; margin-top: 7px; }
+    .ds-ni__d._g { background: var(--color-border); }
+    .ds-ni__t { font-size: var(--fs-body-sm); color: var(--color-text-secondary); }
+    .ds-ni__tm { font-size: var(--fs-caption); color: var(--color-text-tertiary); margin-top: 2px; }
+
+    .ds-id { display: flex; gap: var(--space-4); padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border); }
+    .ds-id:last-child { border-bottom: none; }
+    .ds-id__n { width: 38px; height: 38px; border-radius: 50%; background: rgba(212,175,55,0.06); border: 1px solid rgba(212,175,55,0.2); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: var(--fs-body-sm); color: var(--color-text-gold); flex-shrink: 0; }
+    .ds-id__c h4 { font-weight: 600; font-size: var(--fs-body-sm); color: var(--color-text-primary); margin: 0 0 2px; }
+    .ds-id__c p { font-size: var(--fs-caption); color: var(--color-text-tertiary); margin: 0; }
+
+    .ds-pa { display: flex; align-items: center; gap: var(--space-4); margin-bottom: var(--space-5); }
+    .ds-pa .al { width: 68px; height: 68px; border-radius: 50%; background-size: cover; background-position: center; border: 3px solid rgba(212,175,55,0.2); flex-shrink: 0; }
+
+    .ds-tw { overflow-x: auto; }
+    .ds-tw table { min-width: 480px; width: 100%; border-collapse: collapse; font-size: var(--fs-body-sm); }
+    .ds-tw th { padding: var(--space-3) 0; font-weight: 600; color: var(--color-text-secondary); border-bottom: 2px solid var(--color-border); text-align: start; }
+    .ds-tw td { padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border); }
+
+    .ds-fu { border: 2px dashed var(--color-border); border-radius: var(--radius-xl); padding: var(--space-8); text-align: center; cursor: pointer; transition: .3s cubic-bezier(0.32,0.72,0,1); }
+    .ds-fu:hover { border-color: var(--color-gold); }
+    .ds-fu svg { width: 40px; height: 40px; margin: 0 auto var(--space-4); display: block; color: var(--color-gold); }
+    .ds-fu__t { font-weight: 600; margin-bottom: var(--space-1); }
+
+    /* ── Mobile ── */
+    @media(max-width: 900px) {
+      .ds-wrap { display: block; }
+      .ds-side { position: fixed; top: 54px; left: 0; bottom: 0; width: 270px; z-index: 900; transform: translateX(-100%); transition: transform .3s cubic-bezier(0.4,0,0.2,1); box-shadow: 4px 0 24px rgba(0,0,0,0.3); }
+      [dir="rtl"] .ds-side { left: auto; right: 0; transform: translateX(100%); box-shadow: -4px 0 24px rgba(0,0,0,0.3); }
+      .ds-side.o { transform: translateX(0) !important; }
+      .ds-ham { display: inline-flex; }
+      .ds-kpis { grid-template-columns: repeat(2,1fr); }
+      .ds-main { padding: 1rem; }
+      .ds-greeting h1, .ds-greeting h2 { font-size: var(--fs-h4); }
     }
-    @media(max-width:480px){
-      .dash-greeting__title{font-size:var(--fs-h5);}
-      .dash-greeting__sub{font-size:var(--fs-caption);}
-      .kpi{padding:var(--space-4);}
-      .kpi__val{font-size:var(--fs-h4);}
-      .booking-item__img{height:100px;}
-      .booking-item__name{font-size:var(--fs-caption);}
-      .booking-item__date{font-size:0.6rem;}
-      .dash-card__title{font-size:var(--fs-h6);}
-      .dash-sidebar{width:260px;}
-      .dash-sidebar__link{font-size:0.75rem;padding:var(--space-2) var(--space-4);}
-      .dash-main{padding:var(--space-4);}
-      .profile-avatar-area{flex-direction:column;align-items:flex-start;}
-      .profile-avatar-area .avatar-lg{width:60px;height:60px;}
-      .itinerary-day{flex-direction:column;gap:var(--space-2);}
-      .itinerary-day__num{width:36px;height:36px;font-size:var(--fs-body);}
-      .dash-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
-      .dash-table-wrap table{min-width:500px;}
-      .dash-panel table{min-width:500px;}
+    @media(max-width: 640px) {
+      .ds-kpis { gap: var(--space-3); }
+      .ds-card { padding: var(--space-4); }
+      .ds-main { padding: .75rem; }
+      .ds-greeting h1, .ds-greeting h2 { font-size: var(--fs-h5); }
+      .ds-greeting p { font-size: var(--fs-caption); }
+      .ds-bi__im { width: 100%; height: 110px; }
+      .ds-bi { flex-direction: column; align-items: flex-start; gap: var(--space-2); }
+      .ds-bi__s { align-self: flex-start; }
+      .grid-2 { grid-template-columns: 1fr !important; }
+      .ds-bar__r .nt { width: 32px; height: 32px; }
+      .ds-bar__r .btn--outline { font-size: .65rem; padding: 0 8px; height: 32px; }
+      .ds-bar__r { gap: 4px; }
+    }
+    @media(max-width: 480px) {
+      .ds-main { padding: .5rem; }
+      .ds-kpis { gap: var(--space-2); }
+      .ds-kpi { padding: var(--space-3); }
+      .ds-kpi__v { font-size: var(--fs-h5); }
+      .ds-card__t { font-size: var(--fs-h6); }
+      .ds-card { padding: var(--space-3); }
+      .ds-side { width: 250px; }
+      .ds-side__lk { font-size: .75rem; padding: .35rem .65rem; }
+      .ds-pa { flex-direction: column; align-items: flex-start; }
+      .ds-pa .al { width: 60px; height: 60px; }
+      .ds-id { flex-direction: column; gap: var(--space-2); }
+      .ds-id__n { width: 32px; height: 32px; font-size: var(--fs-body-sm); }
+      .ds-bi__im { height: 90px; }
+      .ds-bi__n { font-size: var(--fs-caption); }
+      .ds-bi__d { font-size: .65rem; }
+      .ds-fu { padding: var(--space-5) !important; }
+      .ds-fu svg { width: 32px; height: 32px; }
+      .ds-bar__in { padding: 0 .75rem; }
+      .ds-bar__r { gap: 3px; }
+      .ds-bar__r .nt { width: 28px; height: 28px; }
+      .ds-bar__r .nt svg { width: 15px; height: 15px; }
+      .ds-bar__r .btn--outline { font-size: .6rem; padding: 0 6px; height: 28px; }
+      .ds-ham { width: 28px; height: 28px; }
+      .ds-ham svg { width: 15px; height: 15px; }
+      .ds-bar__l { gap: .5rem; }
+      .ds-card > [style*="flex-wrap:wrap"] { gap: var(--space-4) !important; }
+      .ds-card > [style*="flex-wrap:wrap"] > div { flex: 1 1 100%; }
+    }
+    @media(max-width: 359px) {
+      .ds-bar__in { padding: 0 .5rem; }
+      .ds-bar__r .nt { width: 24px; height: 24px; }
+      .ds-bar__r .nt svg { width: 13px; height: 13px; }
+      .ds-bar__r .btn--outline { font-size: .55rem; padding: 0 4px; height: 24px; }
+      .ds-bar__r { gap: 2px; }
+      .ds-ham { width: 24px; height: 24px; }
+      .ds-ham svg { width: 13px; height: 13px; }
+      .ds-main { padding: .4rem; }
+      .ds-kpis { grid-template-columns: 1fr; gap: var(--space-2); }
+      .ds-card__t { font-size: .75rem; }
     }
   </style>
 </head>
 <body>
-  <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <!-- Top bar -->
-  <div class="dash-topbar">
-    <div class="container">
-      <div class="dash-topbar__inner">
-        <a href="index.html" class="navbar__logo" style="text-decoration:none;">
-          <svg class="navbar__logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--color-gold);"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" fill="currentColor" stroke="none"/></svg>
-          <div><span class="navbar__logo-text" style="color:#fff;">Luxe Voyages</span><span class="navbar__logo-sub" style="color:rgba(255,255,255,0.5);">Customer Portal</span></div>
+  <div class="ds-bar">
+    <div class="ds-bar__in">
+      <div class="ds-bar__l">
+        <button class="ds-ham" id="dsHam" aria-label="Open menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <a href="index.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" fill="var(--color-gold)" stroke="none"/></svg>
+          <div><span style="font-family:var(--font-display);font-size:1.05rem;color:#fff;line-height:1.2;display:block;">Luxe Voyages</span><span style="font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,0.4);display:block;">Portal</span></div>
         </a>
-        <div style="display:flex;align-items:center;gap:var(--space-4);">
-          <button class="dash-sidebar-toggle" aria-label="Open dashboard menu">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-          </button>
-          <button class="navbar__toggle-btn" data-theme-toggle aria-label="Toggle dark mode" style="color:rgba(255,255,255,0.6);border-color:rgba(255,255,255,0.15);"><span class="icon-sun" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span><span class="icon-moon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></span></button>
-          <button class="navbar__toggle-btn" data-rtl-toggle aria-label="Toggle RTL" style="color:rgba(255,255,255,0.6);border-color:rgba(255,255,255,0.15);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><text x="12" y="16" text-anchor="middle" fill="currentColor" stroke="none" font-family="system-ui,sans-serif" font-weight="700" font-size="11">RTL</text></svg></button>
-          <a href="index.html" class="btn btn--sm btn--outline" style="border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);font-size:var(--fs-caption);">Back to Site</a>
-          <a href="login.html" class="btn btn--sm btn--outline" style="border-color:rgba(255,100,100,0.3);color:rgba(255,100,100,0.7);font-size:var(--fs-caption);">Logout</a>
-        </div>
+      </div>
+      <div class="ds-bar__r">
+        <button class="nt" data-theme-toggle aria-label="Theme" style="margin-inline-end:8px;">
+          <span class="icon-sun" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span>
+          <span class="icon-moon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></span>
+        </button>
+        <button class="nt" data-rtl-toggle aria-label="RTL">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="4.5" width="19" height="15" rx="3.5"/><text x="12" y="15" text-anchor="middle" fill="currentColor" stroke="none" font-family="Manrope,sans-serif" font-weight="700" font-size="9">RTL</text></svg>
+        </button>
       </div>
     </div>
   </div>
 
-  <main id="main-content" class="dash-page">
-    <!-- SIDEBAR -->
-    <aside class="dash-sidebar" role="navigation" aria-label="Dashboard navigation">
-        <div class="dash-sidebar__user">
-        <div class="dash-sidebar__avatar" style="display:flex;align-items:center;justify-content:center;background:var(--color-bronze);"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" width="28" height="28" style="opacity:0.8;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-        <span class="dash-sidebar__name">Alexandra Sterling</span>
-        <span class="dash-sidebar__email">alex@example.com</span>
+  <div class="ds-ov" id="dsOv"></div>
+
+  <div class="ds-wrap">
+
+    <aside class="ds-side" id="dsSide" role="navigation" aria-label="Dashboard">
+      <div class="ds-side__u">
+        <div class="ds-side__av"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <span class="ds-side__nm">Alexandra Sterling</span>
+        <span class="ds-side__em">alex@example.com</span>
       </div>
-
-      <div class="dash-sidebar__label">Main Menu</div>
-      <button class="dash-sidebar__link active" data-dash-tab="overview">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        Overview
-      </button>
-      <button class="dash-sidebar__link" data-dash-tab="bookings">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        My Bookings
-      </button>
-      <button class="dash-sidebar__link" data-dash-tab="itineraries">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        My Itineraries
-      </button>
-      <button class="dash-sidebar__link" data-dash-tab="payments">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-        Payment Schedule
-      </button>
-      <button class="dash-sidebar__link" data-dash-tab="documents">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-        Travel Documents
-      </button>
-
-      <div class="dash-sidebar__label" style="margin-top:var(--space-4);">Account</div>
-      <button class="dash-sidebar__link" data-dash-tab="notifications">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
-        Notifications
-        <span class="badge badge--gold" style="margin-inline-start:auto;font-size:0.6rem;">3</span>
-      </button>
-      <button class="dash-sidebar__link" data-dash-tab="profile">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        My Profile
-      </button>
-      <button class="dash-sidebar__link danger" onclick="window.location='login.html'">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-        Logout
-      </button>
+      <div class="ds-side__lb">Main Menu</div>
+      <button class="ds-side__lk _a" data-tab="overview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Overview</button>
+      <button class="ds-side__lk" data-tab="bookings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>My Bookings</button>
+      <button class="ds-side__lk" data-tab="itineraries"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>My Itineraries</button>
+      <button class="ds-side__lk" data-tab="payments"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Payment Schedule</button>
+      <button class="ds-side__lk" data-tab="documents"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Travel Documents</button>
+      <div class="ds-side__lb" style="margin-top:var(--space-4);">Account</div>
+      <button class="ds-side__lk" data-tab="notifications"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>Notifications<span class="badge badge--gold" style="margin-inline-start:auto;font-size:.55rem;">3</span></button>
+      <button class="ds-side__lk" data-tab="profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>My Profile</button>
+      <button class="ds-side__lk _d" onclick="window.location='login.html'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Logout</button>
     </aside>
 
-    <!-- MAIN CONTENT -->
-    <div class="dash-main">
-      <!-- OVERVIEW PANEL -->
-      <div id="dash-overview" class="dash-panel active">
-        <div class="dash-greeting">
-          <h1 class="dash-greeting__title">Good afternoon, Alexandra ✨</h1>
-          <p class="dash-greeting__sub">Welcome back to your travel portal. Here's your journey at a glance.</p>
-        </div>
+    <div class="ds-main">
 
-        <!-- KPIs -->
-        <div class="dash-kpis">
-          <div class="kpi">
-            <div class="kpi__icon" style="background:rgba(212,175,55,0.12);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--color-gold)" stroke-width="2" width="20" height="20"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
-            <div class="kpi__val">3</div>
-            <div class="kpi__label">Active Bookings</div>
-          </div>
-          <div class="kpi">
-            <div class="kpi__icon" style="background:rgba(6,95,70,0.12);"><svg viewBox="0 0 24 24" fill="none" stroke="#065F46" stroke-width="2" width="20" height="20"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-            <div class="kpi__val">2</div>
-            <div class="kpi__label">Upcoming Trips</div>
-          </div>
-          <div class="kpi">
-            <div class="kpi__icon" style="background:rgba(139,94,52,0.12);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--color-bronze)" stroke-width="2" width="20" height="20"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
-            <div class="kpi__val">$12,400</div>
-            <div class="kpi__label">Total Paid</div>
-          </div>
-          <div class="kpi">
-            <div class="kpi__icon" style="background:rgba(11,31,58,0.1);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--color-midnight)" stroke-width="2" width="20" height="20"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-            <div class="kpi__val">5</div>
-            <div class="kpi__label">Documents Uploaded</div>
-          </div>
+      <!-- ═══ OVERVIEW ═══ -->
+      <div id="pnl-overview" class="ds-pnl _a">
+        <div class="ds-greeting"><h1>Good afternoon, Alexandra</h1><p>Welcome back — here's your journey at a glance.</p></div>
+        <div class="ds-kpis">
+          <div class="ds-kpi"><div class="ds-kpi__ic" style="background:rgba(212,175,55,0.1);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--color-gold)" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><div class="ds-kpi__v">3</div><div class="ds-kpi__l">Active Bookings</div></div>
+          <div class="ds-kpi"><div class="ds-kpi__ic" style="background:rgba(6,95,70,0.1);"><svg viewBox="0 0 24 24" fill="none" stroke="#065F46" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="ds-kpi__v">2</div><div class="ds-kpi__l">Upcoming Trips</div></div>
+          <div class="ds-kpi"><div class="ds-kpi__ic" style="background:rgba(139,94,52,0.1);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--color-bronze)" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div><div class="ds-kpi__v">$12,400</div><div class="ds-kpi__l">Total Paid</div></div>
+          <div class="ds-kpi"><div class="ds-kpi__ic" style="background:rgba(11,31,58,0.08);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--color-midnight)" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="ds-kpi__v">5</div><div class="ds-kpi__l">Documents</div></div>
         </div>
-
-        <!-- Upcoming Trip -->
-        <div class="dash-card">
-          <div class="dash-card__title">Next Upcoming Trip</div>
-          <div class="booking-item">
-            <div class="booking-item__img" style="background-image: url('https://loremflickr.com/800/600/luxury,travel?random=166');"></div>
-            <div class="booking-item__info">
-              <div class="booking-item__name">Santorini & Mykonos Luxury Escape</div>
-              <div class="booking-item__date">📅 Aug 15 – Aug 23, 2024 &nbsp;·&nbsp; 8 Days</div>
+        <div class="ds-card">
+          <div class="ds-card__t">Next Upcoming Trip</div>
+          <div class="ds-bi">
+            <div class="ds-bi__im" style="background-image:url('https://loremflickr.com/800/600/luxury,travel?random=166')"></div>
+            <div class="ds-bi__in">
+              <div class="ds-bi__n">Santorini & Mykonos Luxury Escape</div>
+              <div class="ds-bi__d">Aug 15 – Aug 23, 2024 &nbsp;·&nbsp; 8 Days</div>
               <div style="margin-top:var(--space-3);">
                 <div style="display:flex;justify-content:space-between;font-size:var(--fs-caption);margin-bottom:4px;"><span>Trip Countdown</span><span style="color:var(--color-text-gold);font-weight:600;">25 Days</span></div>
-                <div class="progress-track"><div class="progress-fill" style="width:68%;"></div></div>
+                <div class="pr-tr"><div class="pr-fl" style="width:68%"></div></div>
               </div>
             </div>
-            <div class="booking-item__status"><span class="status-pill status-pill--confirmed">Confirmed</span></div>
+            <div class="ds-bi__s"><span class="s-pill s-pill--c">Confirmed</span></div>
           </div>
         </div>
-
-        <!-- Recent Notifications -->
-        <div class="dash-card">
-          <div class="dash-card__title">Recent Notifications</div>
-          <div class="notif-item"><div class="notif-item__dot"></div><div><div class="notif-item__text">Your visa documents for Greece have been verified and approved.</div><div class="notif-item__time">2 hours ago</div></div></div>
-          <div class="notif-item"><div class="notif-item__dot"></div><div><div class="notif-item__text">Payment installment of $3,100 received. Next installment due Aug 1.</div><div class="notif-item__time">Yesterday</div></div></div>
-          <div class="notif-item"><div class="notif-item__dot notif-item__dot--gray"></div><div><div class="notif-item__text">Your flight details for BKK → ATH have been updated in your itinerary.</div><div class="notif-item__time">3 days ago</div></div></div>
+        <div class="ds-card">
+          <div class="ds-card__t">Recent Notifications</div>
+          <div class="ds-ni"><div class="ds-ni__d"></div><div><div class="ds-ni__t">Your visa documents for Greece have been verified and approved.</div><div class="ds-ni__tm">2 hours ago</div></div></div>
+          <div class="ds-ni"><div class="ds-ni__d"></div><div><div class="ds-ni__t">Payment installment of $3,100 received. Next installment due Aug 1.</div><div class="ds-ni__tm">Yesterday</div></div></div>
+          <div class="ds-ni"><div class="ds-ni__d ds-ni__d _g"></div><div><div class="ds-ni__t">Your flight details for BKK → ATH have been updated in your itinerary.</div><div class="ds-ni__tm">3 days ago</div></div></div>
         </div>
       </div>
 
-      <!-- BOOKINGS PANEL -->
-      <div id="dash-bookings" class="dash-panel">
-        <div class="dash-greeting"><h2 class="dash-greeting__title">My Bookings</h2><p class="dash-greeting__sub">All your travel bookings in one place.</p></div>
-        <div class="dash-card">
-          <div class="dash-card__title">Active Bookings</div>
-          <div class="booking-item"><div class="booking-item__img" style="background-image: url('https://loremflickr.com/800/600/luxury,travel?random=167');"></div><div class="booking-item__info"><div class="booking-item__name">Santorini & Mykonos Luxury Escape</div><div class="booking-item__date">Aug 15 – Aug 23, 2024 &nbsp;·&nbsp; Booking #LV-2024-4521</div></div><div class="booking-item__status"><span class="status-pill status-pill--confirmed">Confirmed</span></div></div>
-          <div class="booking-item"><div class="booking-item__img" style="background-image: url('https://loremflickr.com/800/600/luxury,travel?random=168');"></div><div class="booking-item__info"><div class="booking-item__name">Bali Wellness Retreat</div><div class="booking-item__date">Nov 10 – Nov 20, 2024 &nbsp;·&nbsp; Booking #LV-2024-4612</div></div><div class="booking-item__status"><span class="status-pill status-pill--pending">Pending</span></div></div>
-          <div class="booking-item"><div class="booking-item__img" style="background-image: url('https://loremflickr.com/800/600/luxury,travel?random=169');"></div><div class="booking-item__info"><div class="booking-item__name">African Safari Expedition</div><div class="booking-item__date">Jan 05 – Jan 17, 2025 &nbsp;·&nbsp; Booking #LV-2025-0044</div></div><div class="booking-item__status"><span class="status-pill status-pill--pending">Pending</span></div></div>
+      <!-- ═══ BOOKINGS ═══ -->
+      <div id="pnl-bookings" class="ds-pnl">
+        <div class="ds-greeting"><h2>My Bookings</h2><p>All your travel bookings in one place.</p></div>
+        <div class="ds-card">
+          <div class="ds-card__t">Active Bookings</div>
+          <div class="ds-bi"><div class="ds-bi__im" style="background-image:url('https://loremflickr.com/800/600/luxury,travel?random=167')"></div><div class="ds-bi__in"><div class="ds-bi__n">Santorini & Mykonos Luxury Escape</div><div class="ds-bi__d">Aug 15 – Aug 23, 2024 · Booking #LV-2024-4521</div></div><div class="ds-bi__s"><span class="s-pill s-pill--c">Confirmed</span></div></div>
+          <div class="ds-bi"><div class="ds-bi__im" style="background-image:url('https://loremflickr.com/800/600/luxury,travel?random=168')"></div><div class="ds-bi__in"><div class="ds-bi__n">Bali Wellness Retreat</div><div class="ds-bi__d">Nov 10 – Nov 20, 2024 · Booking #LV-2024-4612</div></div><div class="ds-bi__s"><span class="s-pill s-pill--p">Pending</span></div></div>
+          <div class="ds-bi"><div class="ds-bi__im" style="background-image:url('https://loremflickr.com/800/600/luxury,travel?random=169')"></div><div class="ds-bi__in"><div class="ds-bi__n">African Safari Expedition</div><div class="ds-bi__d">Jan 5 – Jan 17, 2025 · Booking #LV-2025-0044</div></div><div class="ds-bi__s"><span class="s-pill s-pill--p">Pending</span></div></div>
         </div>
-        <div class="dash-card">
-          <div class="dash-card__title">Past Bookings</div>
-          <div class="booking-item"><div class="booking-item__img" style="background-image: url('https://loremflickr.com/800/600/luxury,travel?random=170');"></div><div class="booking-item__info"><div class="booking-item__name">Japan Cultural Journey</div><div class="booking-item__date">Mar 12 – Mar 24, 2024 &nbsp;·&nbsp; Booking #LV-2024-2201</div></div><div class="booking-item__status"><span class="status-pill status-pill--completed">Completed</span></div></div>
-          <div class="booking-item"><div class="booking-item__img" style="background-image: url('https://loremflickr.com/800/600/luxury,travel?random=171');"></div><div class="booking-item__info"><div class="booking-item__name">Swiss Alps Winter Escape</div><div class="booking-item__date">Jan 08 – Jan 15, 2024 &nbsp;·&nbsp; Booking #LV-2024-0112</div></div><div class="booking-item__status"><span class="status-pill status-pill--completed">Completed</span></div></div>
+        <div class="ds-card">
+          <div class="ds-card__t">Past Bookings</div>
+          <div class="ds-bi"><div class="ds-bi__im" style="background-image:url('https://loremflickr.com/800/600/luxury,travel?random=170')"></div><div class="ds-bi__in"><div class="ds-bi__n">Japan Cultural Journey</div><div class="ds-bi__d">Mar 12 – Mar 24, 2024 · Booking #LV-2024-2201</div></div><div class="ds-bi__s"><span class="s-pill s-pill--d">Completed</span></div></div>
+          <div class="ds-bi"><div class="ds-bi__im" style="background-image:url('https://loremflickr.com/800/600/luxury,travel?random=171')"></div><div class="ds-bi__in"><div class="ds-bi__n">Swiss Alps Winter Escape</div><div class="ds-bi__d">Jan 8 – Jan 15, 2024 · Booking #LV-2024-0112</div></div><div class="ds-bi__s"><span class="s-pill s-pill--d">Completed</span></div></div>
         </div>
         <a href="contact.html" class="btn btn--primary">Book a New Journey</a>
       </div>
 
-      <!-- ITINERARIES PANEL -->
-      <div id="dash-itineraries" class="dash-panel">
-        <div class="dash-greeting"><h2 class="dash-greeting__title">My Itineraries</h2><p class="dash-greeting__sub">Detailed day-by-day plans for your upcoming journeys.</p></div>
-        <div class="dash-card">
-          <div class="dash-card__title">Santorini & Mykonos — Day-by-Day</div>
-          <div class="itinerary-day"><div class="itinerary-day__num">1</div><div class="itinerary-day__content"><h4>Day 1 — Arrival in Athens</h4><p>Private transfer from airport to Grande Bretagne Hotel. Evening welcome dinner at Hytra restaurant overlooking the Acropolis.</p></div></div>
-          <div class="itinerary-day"><div class="itinerary-day__num">2</div><div class="itinerary-day__content"><h4>Day 2 — Athens to Santorini</h4><p>Morning private Acropolis visit. Afternoon flight to Santorini. Check-in at Kirini Suites with caldera-view plunge pool.</p></div></div>
-          <div class="itinerary-day"><div class="itinerary-day__num">3</div><div class="itinerary-day__content"><h4>Day 3 – 4 — Santorini Exploration</h4><p>Private catamaran caldera cruise. Sunset dinner in Oia. Wine tasting at Santo Wines with volcano views.</p></div></div>
-          <div class="itinerary-day"><div class="itinerary-day__num">5</div><div class="itinerary-day__content"><h4>Day 5 – 6 — Mykonos</h4><p>Private speedboat to Mykonos. Villa check-in. Beach club at Scorpios. Exclusive Nammos dining experience.</p></div></div>
-          <div class="itinerary-day"><div class="itinerary-day__num">8</div><div class="itinerary-day__content"><h4>Day 8 — Departure</h4><p>Private transfer to Mykonos Airport. Direct flight to London Heathrow.</p></div></div>
+      <!-- ═══ ITINERARIES ═══ -->
+      <div id="pnl-itineraries" class="ds-pnl">
+        <div class="ds-greeting"><h2>My Itineraries</h2><p>Detailed day-by-day plans for your upcoming journeys.</p></div>
+        <div class="ds-card">
+          <div class="ds-card__t">Santorini & Mykonos — Day-by-Day</div>
+          <div class="ds-id"><div class="ds-id__n">1</div><div class="ds-id__c"><h4>Day 1 — Arrival in Athens</h4><p>Private transfer from airport to Grande Bretagne Hotel. Evening welcome dinner at Hytra restaurant overlooking the Acropolis.</p></div></div>
+          <div class="ds-id"><div class="ds-id__n">2</div><div class="ds-id__c"><h4>Day 2 — Athens to Santorini</h4><p>Morning private Acropolis visit. Afternoon flight to Santorini. Check-in at Kirini Suites with caldera-view plunge pool.</p></div></div>
+          <div class="ds-id"><div class="ds-id__n">3</div><div class="ds-id__c"><h4>Day 3–4 — Santorini Exploration</h4><p>Private catamaran caldera cruise. Sunset dinner in Oia. Wine tasting at Santo Wines with volcano views.</p></div></div>
+          <div class="ds-id"><div class="ds-id__n">5</div><div class="ds-id__c"><h4>Day 5–6 — Mykonos</h4><p>Private speedboat to Mykonos. Villa check-in. Beach club at Scorpios. Exclusive Nammos dining experience.</p></div></div>
+          <div class="ds-id"><div class="ds-id__n">8</div><div class="ds-id__c"><h4>Day 8 — Departure</h4><p>Private transfer to Mykonos Airport. Direct flight to London Heathrow.</p></div></div>
         </div>
       </div>
 
-      <!-- PAYMENTS PANEL -->
-      <div id="dash-payments" class="dash-panel">
-        <div class="dash-greeting"><h2 class="dash-greeting__title">Payment Schedule</h2><p class="dash-greeting__sub">Manage your installments and payment history.</p></div>
-        <div class="dash-card">
-          <div class="dash-card__title">Payment Summary — Santorini Trip</div>
+      <!-- ═══ PAYMENTS ═══ -->
+      <div id="pnl-payments" class="ds-pnl">
+        <div class="ds-greeting"><h2>Payment Schedule</h2><p>Manage your installments and payment history.</p></div>
+        <div class="ds-card">
+          <div class="ds-card__t">Santorini Trip — Payment Summary</div>
           <div style="display:flex;flex-wrap:wrap;gap:var(--space-8);margin-bottom:var(--space-6);">
             <div><div style="font-size:var(--fs-caption);color:var(--color-text-tertiary);margin-bottom:4px;">Total Package</div><div style="font-family:var(--font-display);font-size:var(--fs-h4);">$18,600</div></div>
             <div><div style="font-size:var(--fs-caption);color:var(--color-text-tertiary);margin-bottom:4px;">Paid</div><div style="font-family:var(--font-display);font-size:var(--fs-h4);color:#065F46;">$12,400</div></div>
@@ -288,78 +312,136 @@
           </div>
           <div style="margin-bottom:var(--space-6);">
             <div style="display:flex;justify-content:space-between;font-size:var(--fs-caption);margin-bottom:var(--space-2);"><span>Payment Progress</span><span style="font-weight:600;">67%</span></div>
-            <div class="progress-track"><div class="progress-fill" style="width:67%;"></div></div>
+            <div class="pr-tr"><div class="pr-fl" style="width:67%"></div></div>
           </div>
-          <div class="dash-table-wrap">
-          <table style="width:100%;border-collapse:collapse;font-size:var(--fs-body-sm);">
-            <thead><tr style="border-bottom:2px solid var(--color-border);text-align:left;"><th style="padding:var(--space-3) 0;font-weight:600;color:var(--color-text-secondary);">Installment</th><th style="padding:var(--space-3) 0;font-weight:600;color:var(--color-text-secondary);">Due Date</th><th style="padding:var(--space-3) 0;font-weight:600;color:var(--color-text-secondary);">Amount</th><th style="padding:var(--space-3) 0;font-weight:600;color:var(--color-text-secondary);">Status</th></tr></thead>
-            <tbody>
-              <tr style="border-bottom:1px solid var(--color-border);"><td style="padding:var(--space-3) 0;">Deposit (25%)</td><td style="padding:var(--space-3) 0;">Mar 1, 2024</td><td style="padding:var(--space-3) 0;">$4,650</td><td style="padding:var(--space-3) 0;"><span class="status-pill status-pill--confirmed">Paid</span></td></tr>
-              <tr style="border-bottom:1px solid var(--color-border);"><td style="padding:var(--space-3) 0;">Installment 2</td><td style="padding:var(--space-3) 0;">May 15, 2024</td><td style="padding:var(--space-3) 0;">$3,875</td><td style="padding:var(--space-3) 0;"><span class="status-pill status-pill--confirmed">Paid</span></td></tr>
-              <tr style="border-bottom:1px solid var(--color-border);"><td style="padding:var(--space-3) 0;">Installment 3</td><td style="padding:var(--space-3) 0;">Jun 30, 2024</td><td style="padding:var(--space-3) 0;">$3,875</td><td style="padding:var(--space-3) 0;"><span class="status-pill status-pill--confirmed">Paid</span></td></tr>
-              <tr><td style="padding:var(--space-3) 0;font-weight:600;">Final Balance</td><td style="padding:var(--space-3) 0;color:var(--color-text-gold);">Aug 1, 2024</td><td style="padding:var(--space-3) 0;font-weight:600;">$6,200</td><td style="padding:var(--space-3) 0;"><span class="status-pill status-pill--pending">Due</span></td></tr>
-            </tbody>
-          </table>
-          <div style="margin-top:var(--space-6);"><a href="#" class="btn btn--primary">Pay Now — $6,200</a></div>
+          <div class="ds-tw">
+            <table>
+              <thead><tr><th>Installment</th><th>Due Date</th><th>Amount</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td>Deposit (25%)</td><td>Mar 1, 2024</td><td>$4,650</td><td><span class="s-pill s-pill--c">Paid</span></td></tr>
+                <tr><td>Installment 2</td><td>May 15, 2024</td><td>$3,875</td><td><span class="s-pill s-pill--c">Paid</span></td></tr>
+                <tr><td>Installment 3</td><td>Jun 30, 2024</td><td>$3,875</td><td><span class="s-pill s-pill--c">Paid</span></td></tr>
+                <tr><td style="font-weight:600;">Final Balance</td><td style="color:var(--color-text-gold);">Aug 1, 2024</td><td style="font-weight:600;">$6,200</td><td><span class="s-pill s-pill--p">Due</span></td></tr>
+              </tbody>
+            </table>
+            <div style="margin-top:var(--space-6);"><a href="#" class="btn btn--primary">Pay Now — $6,200</a></div>
+          </div>
         </div>
       </div>
 
-      <!-- DOCUMENTS PANEL -->
-      <div id="dash-documents" class="dash-panel">
-        <div class="dash-greeting"><h2 class="dash-greeting__title">Travel Documents</h2><p class="dash-greeting__sub">Upload and manage your passport, visas, and travel documents.</p></div>
-        <div class="dash-card">
-          <div class="dash-card__title">Upload Documents</div>
-          <div class="file-upload" style="border:2px dashed var(--color-border);border-radius:var(--radius-xl);padding:var(--space-10);text-align:center;cursor:pointer;transition:all var(--transition-base);" onmouseenter="this.style.borderColor='var(--color-gold)'" onmouseleave="this.style.borderColor='var(--color-border)'">
-            <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-gold)" stroke-width="1.5" width="48" height="48" style="margin:0 auto var(--space-4);display:block;"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-            <div class="file-upload__text" style="font-weight:600;margin-bottom:var(--space-1);">Drag & drop files here</div>
+      <!-- ═══ DOCUMENTS ═══ -->
+      <div id="pnl-documents" class="ds-pnl">
+        <div class="ds-greeting"><h2>Travel Documents</h2><p>Upload and manage your passport, visas, and travel documents.</p></div>
+        <div class="ds-card">
+          <div class="ds-card__t">Upload Documents</div>
+          <div class="ds-fu" onclick="this.querySelector('input')?.click()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <div class="ds-fu__t">Drag & drop files here</div>
             <div style="font-size:var(--fs-caption);color:var(--color-text-tertiary);">or click to browse — PDF, JPG, PNG up to 10MB</div>
             <input type="file" multiple style="display:none;" accept=".pdf,.jpg,.jpeg,.png">
           </div>
-          <h4 style="margin-top:var(--space-6);margin-bottom:var(--space-4);">Uploaded Documents</h4>
-          <div class="booking-item"><div class="kpi__icon" style="background:rgba(6,95,70,0.12);flex-shrink:0;"><svg viewBox="0 0 24 24" fill="none" stroke="#065F46" stroke-width="2" width="20" height="20"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="booking-item__info"><div class="booking-item__name">Passport — Alexandra_Sterling.pdf</div><div class="booking-item__date">Uploaded Jun 12, 2024 &nbsp;·&nbsp; 2.1 MB</div></div><div class="booking-item__status"><span class="status-pill status-pill--confirmed">Verified</span></div></div>
-          <div class="booking-item"><div class="kpi__icon" style="background:rgba(6,95,70,0.12);flex-shrink:0;"><svg viewBox="0 0 24 24" fill="none" stroke="#065F46" stroke-width="2" width="20" height="20"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="booking-item__info"><div class="booking-item__name">Greece Visa Application.pdf</div><div class="booking-item__date">Uploaded Jun 15, 2024 &nbsp;·&nbsp; 1.4 MB</div></div><div class="booking-item__status"><span class="status-pill status-pill--confirmed">Verified</span></div></div>
-          <div class="booking-item"><div class="kpi__icon" style="background:rgba(212,175,55,0.12);flex-shrink:0;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--color-gold)" stroke-width="2" width="20" height="20"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="booking-item__info"><div class="booking-item__name">Travel Insurance Certificate.pdf</div><div class="booking-item__date">Uploaded Jun 20, 2024 &nbsp;·&nbsp; 0.8 MB</div></div><div class="booking-item__status"><span class="status-pill status-pill--pending">In Review</span></div></div>
+          <h4 style="margin-top:var(--space-6);margin-bottom:var(--space-4);font-family:var(--font-display);font-size:var(--fs-h6);">Uploaded Documents</h4>
+          <div class="ds-bi"><div style="width:34px;height:34px;border-radius:var(--radius-md);background:rgba(6,95,70,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg viewBox="0 0 24 24" fill="none" stroke="#065F46" stroke-width="2" width="17" height="17"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="ds-bi__in"><div class="ds-bi__n">Passport — Alexandra_Sterling.pdf</div><div class="ds-bi__d">Uploaded Jun 12, 2024 · 2.1 MB</div></div><div class="ds-bi__s"><span class="s-pill s-pill--c">Verified</span></div></div>
+          <div class="ds-bi"><div style="width:34px;height:34px;border-radius:var(--radius-md);background:rgba(6,95,70,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg viewBox="0 0 24 24" fill="none" stroke="#065F46" stroke-width="2" width="17" height="17"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="ds-bi__in"><div class="ds-bi__n">Greece Visa Application.pdf</div><div class="ds-bi__d">Uploaded Jun 15, 2024 · 1.4 MB</div></div><div class="ds-bi__s"><span class="s-pill s-pill--c">Verified</span></div></div>
+          <div class="ds-bi"><div style="width:34px;height:34px;border-radius:var(--radius-md);background:rgba(212,175,55,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--color-gold)" stroke-width="2" width="17" height="17"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="ds-bi__in"><div class="ds-bi__n">Travel Insurance Certificate.pdf</div><div class="ds-bi__d">Uploaded Jun 20, 2024 · 0.8 MB</div></div><div class="ds-bi__s"><span class="s-pill s-pill--p">In Review</span></div></div>
         </div>
       </div>
 
-      <!-- NOTIFICATIONS PANEL -->
-      <div id="dash-notifications" class="dash-panel">
-        <div class="dash-greeting"><h2 class="dash-greeting__title">Notifications</h2><p class="dash-greeting__sub">Stay up to date with your travel updates.</p></div>
-        <div class="dash-card">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-5);"><div class="dash-card__title" style="margin-bottom:0;">All Notifications</div><button style="background:none;border:none;font-size:var(--fs-caption);color:var(--color-text-gold);cursor:pointer;">Mark all as read</button></div>
-          <div class="notif-item"><div class="notif-item__dot"></div><div><div class="notif-item__text"><strong>Document Verified:</strong> Your passport has been approved for the Santorini trip.</div><div class="notif-item__time">2 hours ago</div></div></div>
-          <div class="notif-item"><div class="notif-item__dot"></div><div><div class="notif-item__text"><strong>Payment Received:</strong> Installment 3 of $3,875 received. Thank you!</div><div class="notif-item__time">Yesterday, 3:42 PM</div></div></div>
-          <div class="notif-item"><div class="notif-item__dot"></div><div><div class="notif-item__text"><strong>Itinerary Updated:</strong> Your Mykonos hotel has been upgraded to a sea-view suite.</div><div class="notif-item__time">2 days ago</div></div></div>
-          <div class="notif-item"><div class="notif-item__dot notif-item__dot--gray"></div><div><div class="notif-item__text"><strong>New Blog Post:</strong> "Best Time to Visit Santorini" — read our latest travel guide.</div><div class="notif-item__time">4 days ago</div></div></div>
-          <div class="notif-item"><div class="notif-item__dot notif-item__dot--gray"></div><div><div class="notif-item__text"><strong>Booking Confirmed:</strong> Bali Wellness Retreat (Nov 10–20) is now confirmed.</div><div class="notif-item__time">1 week ago</div></div></div>
+      <!-- ═══ NOTIFICATIONS ═══ -->
+      <div id="pnl-notifications" class="ds-pnl">
+        <div class="ds-greeting"><h2>Notifications</h2><p>Stay up to date with your travel updates.</p></div>
+        <div class="ds-card">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:var(--space-2);margin-bottom:var(--space-5);flex-wrap:wrap;"><div class="ds-card__t" style="margin-bottom:0;">All Notifications</div><button id="markRead" style="background:none;border:none;font-size:var(--fs-caption);color:var(--color-text-gold);cursor:pointer;white-space:nowrap;">Mark all as read</button></div>
+          <div class="ds-ni"><div class="ds-ni__d"></div><div><div class="ds-ni__t"><strong>Document Verified:</strong> Your passport has been approved for the Santorini trip.</div><div class="ds-ni__tm">2 hours ago</div></div></div>
+          <div class="ds-ni"><div class="ds-ni__d"></div><div><div class="ds-ni__t"><strong>Payment Received:</strong> Installment 3 of $3,875 received. Thank you!</div><div class="ds-ni__tm">Yesterday, 3:42 PM</div></div></div>
+          <div class="ds-ni"><div class="ds-ni__d"></div><div><div class="ds-ni__t"><strong>Itinerary Updated:</strong> Your Mykonos hotel has been upgraded to a sea-view suite.</div><div class="ds-ni__tm">2 days ago</div></div></div>
+          <div class="ds-ni"><div class="ds-ni__d ds-ni__d _g"></div><div><div class="ds-ni__t"><strong>Blog Post:</strong> "Best Time to Visit Santorini" — read our latest travel guide.</div><div class="ds-ni__tm">4 days ago</div></div></div>
+          <div class="ds-ni"><div class="ds-ni__d ds-ni__d _g"></div><div><div class="ds-ni__t"><strong>Booking Confirmed:</strong> Bali Wellness Retreat (Nov 10–20) is now confirmed.</div><div class="ds-ni__tm">1 week ago</div></div></div>
         </div>
       </div>
 
-      <!-- PROFILE PANEL -->
-      <div id="dash-profile" class="dash-panel">
-        <div class="dash-greeting"><h2 class="dash-greeting__title">My Profile</h2><p class="dash-greeting__sub">Manage your personal information and preferences.</p></div>
-        <div class="dash-card">
-          <div class="profile-avatar-area">
-            <div class="avatar-lg" style="background-image: url('https://loremflickr.com/200/200/portrait,face?random=204'); background-size: cover; background-position: center;"></div>
+      <!-- ═══ PROFILE ═══ -->
+      <div id="pnl-profile" class="ds-pnl">
+        <div class="ds-greeting"><h2>My Profile</h2><p>Manage your personal information and preferences.</p></div>
+        <div class="ds-card">
+          <div class="ds-pa">
+            <div class="al" style="background-image:url('https://loremflickr.com/200/200/portrait,face?random=204')"></div>
             <div><button class="btn btn--outline btn--sm">Change Photo</button><div style="font-size:var(--fs-caption);color:var(--color-text-tertiary);margin-top:var(--space-2);">JPG, GIF or PNG. Max 2MB.</div></div>
           </div>
-          <form data-validate>
+          <form id="profileForm">
             <div class="grid-2" style="gap:var(--space-4);">
-              <div class="form-group"><label class="form-label" for="pr-fname">First Name</label><input type="text" id="pr-fname" class="form-input" value="Alexandra" required></div>
-              <div class="form-group"><label class="form-label" for="pr-lname">Last Name</label><input type="text" id="pr-lname" class="form-input" value="Sterling" required></div>
-              <div class="form-group"><label class="form-label" for="pr-email">Email</label><input type="email" id="pr-email" class="form-input" value="alex@example.com" required></div>
-              <div class="form-group"><label class="form-label" for="pr-phone">Phone</label><input type="tel" id="pr-phone" class="form-input" value="+1 (555) 234-5678"></div>
-              <div class="form-group"><label class="form-label" for="pr-passport">Passport Number</label><input type="text" id="pr-passport" class="form-input" value="A12345678"></div>
-              <div class="form-group"><label class="form-label" for="pr-nationality">Nationality</label><input type="text" id="pr-nationality" class="form-input" value="American"></div>
+              <div class="form-group"><label class="form-label" for="pf-fn">First Name</label><input type="text" id="pf-fn" class="form-input" value="Alexandra" required></div>
+              <div class="form-group"><label class="form-label" for="pf-ln">Last Name</label><input type="text" id="pf-ln" class="form-input" value="Sterling" required></div>
+              <div class="form-group"><label class="form-label" for="pf-em">Email</label><input type="email" id="pf-em" class="form-input" value="alex@example.com" required></div>
+              <div class="form-group"><label class="form-label" for="pf-ph">Phone</label><input type="tel" id="pf-ph" class="form-input" value="+1 (555) 234-5678"></div>
+              <div class="form-group"><label class="form-label" for="pf-pp">Passport Number</label><input type="text" id="pf-pp" class="form-input" value="A12345678"></div>
+              <div class="form-group"><label class="form-label" for="pf-na">Nationality</label><input type="text" id="pf-na" class="form-input" value="American"></div>
             </div>
-            <div class="form-group"><label class="form-label" for="pr-prefs">Travel Preferences</label><textarea id="pr-prefs" class="form-input" rows="3">Prefers aisle seats, vegetarian meals, and suite-level accommodations. Allergic to shellfish.</textarea></div>
+            <div class="form-group"><label class="form-label" for="pf-pr">Travel Preferences</label><textarea id="pf-pr" class="form-input" rows="3">Prefers aisle seats, vegetarian meals, and suite-level accommodations. Allergic to shellfish.</textarea></div>
             <button type="submit" class="btn btn--primary">Save Changes</button>
           </form>
         </div>
       </div>
-    </div>
-  </main>
 
-  <script src="js/dashboard-bundle.js" defer></script>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      const $ = (s,p) => (p||document).querySelector(s);
+      const $$ = (s,p) => [...(p||document).querySelectorAll(s)];
+
+      // Theme
+      const th = localStorage.getItem('luxe-travel-theme') || (matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', th);
+      const updIcons = t => { $$('[data-theme-toggle]').forEach(b => { const s = b.querySelector('.icon-sun'), m = b.querySelector('.icon-moon'); if(s&&m){ s.style.display = t==='dark'?'block':'none'; m.style.display = t==='dark'?'none':'block'; } }); };
+      updIcons(th);
+      $$('[data-theme-toggle]').forEach(b => b.addEventListener('click', () => { const c = document.documentElement.getAttribute('data-theme')||'light', n = c==='dark'?'light':'dark'; document.documentElement.setAttribute('data-theme', n); localStorage.setItem('luxe-travel-theme', n); updIcons(n); }));
+
+      // RTL
+      const dir = localStorage.getItem('luxe-travel-dir');
+      if (dir) document.documentElement.setAttribute('dir', dir);
+      $$('[data-rtl-toggle]').forEach(b => b.addEventListener('click', () => { const c = document.documentElement.getAttribute('dir')||'ltr', n = c==='rtl'?'ltr':'rtl'; document.documentElement.setAttribute('dir', n); localStorage.setItem('luxe-travel-dir', n); }));
+
+      // Sidebar
+      const side = $('#dsSide'), ov = $('#dsOv'), ham = $('#dsHam');
+      const closeS = () => { side.classList.remove('o'); if(ov) ov.classList.remove('o'); };
+      const openS = () => { side.classList.add('o'); if(ov) ov.classList.add('o'); };
+      if (ham) ham.addEventListener('click', () => side.classList.contains('o') ? closeS() : openS());
+      if (ov) ov.addEventListener('click', closeS);
+      $$('.ds-side__lk', side).forEach(l => l.addEventListener('click', () => { if (window.innerWidth <= 900) closeS(); }));
+      document.addEventListener('click', e => { if (window.innerWidth <= 900 && side.classList.contains('o') && !side.contains(e.target) && !ham.contains(e.target)) closeS(); });
+
+      // Tabs
+      const tabs = $$('.ds-side__lk[data-tab]'), panels = $$('.ds-pnl');
+      tabs.forEach(l => l.addEventListener('click', e => {
+        e.preventDefault();
+        const t = l.dataset.tab;
+        tabs.forEach(x => x.classList.remove('_a'));
+        l.classList.add('_a');
+        panels.forEach(p => p.classList.remove('_a'));
+        const pnl = $(`#pnl-${t}`);
+        if (pnl) pnl.classList.add('_a');
+      }));
+
+      // File Upload
+      const fz = $$('.ds-fu');
+      fz.forEach(z => { const inp = $('input[type=file]', z); if(inp) z.addEventListener('click', e => { if(e.target!==inp) inp.click(); }); });
+
+      // Mark all read
+      const mr = $('#markRead');
+      if (mr) mr.addEventListener('click', () => { $$('.ds-ni__d').forEach(d => d.classList.add('_g')); const b = $('.ds-side__lk[data-tab="notifications"] .badge'); if(b) b.style.display='none'; mr.textContent='All marked as read'; mr.style.opacity='.6'; mr.style.cursor='default'; });
+
+      // Profile
+      const pb = $('#pnl-profile .ds-pa button');
+      if (pb) pb.addEventListener('click', () => { const i = document.createElement('input'); i.type='file'; i.accept='image/*'; i.onchange=e=>{const f=e.target.files[0];if(f){const r=new FileReader();r.onload=ev=>{const a=$('#pnl-profile .al');if(a)a.style.backgroundImage=`url('${ev.target.result}')`;};r.readAsDataURL(f);}}; i.click(); });
+      const pf = $('#profileForm');
+      if (pf) pf.addEventListener('submit', e => { e.preventDefault(); const sb = $('button[type=submit]', pf); if(sb){const ot=sb.textContent;sb.textContent='Saving...';sb.disabled=true;setTimeout(()=>{sb.textContent='Saved Successfully!';sb.style.background='#065F46';sb.style.color='#fff';setTimeout(()=>{sb.textContent=ot;sb.disabled=false;sb.style.background='';sb.style.color='';},2000);},800);} });
+
+      // Pay
+      const pay = $('.ds-card a.btn--primary');
+      if (pay) pay.addEventListener('click', e => { e.preventDefault(); alert('Redirecting to secure payment gateway...'); });
+    })();
+  </script>
 </body>
 </html>
