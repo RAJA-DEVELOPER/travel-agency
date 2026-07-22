@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Luxe Voyages — Explore trending destinations, luxury tour packages, and premium travel experiences with our modern booking platform.">
+  <title>Luxe Voyages — Modern Luxury Travel Experience</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/dark-mode.css">
+  <link rel="stylesheet" href="css/rtl.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body class="page-has-hero">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div class="page-transition"></div>
+
+  <!-- NAVBAR (same structure as index.html) -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo" aria-label="Luxe Voyages Home">
+        <svg class="navbar__logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" fill="currentColor" stroke="none"/></svg>
+        <div><span class="navbar__logo-text">Luxe Voyages</span><span class="navbar__logo-sub">Luxury Travel</span></div>
+      </a>
+      <ul class="navbar__menu">
+        <li class="navbar__item"><a href="index.html" class="navbar__link">Home</a></li>
+        <li class="navbar__item"><a href="home-2.html" class="navbar__link">Home 2</a></li>
+        <li class="navbar__item"><a href="about.html" class="navbar__link">About</a></li>
+        <li class="navbar__item"><a href="services.html" class="navbar__link">Services</a></li>
+        <li class="navbar__item"><a href="blog.html" class="navbar__link">Blog</a></li>
+        <li class="navbar__item"><a href="contact.html" class="navbar__link">Contact</a></li>
+      </ul>
+      <div class="navbar__actions">
+        <button class="navbar__toggle-btn" data-theme-toggle aria-label="Toggle dark mode"><span class="icon-sun" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span><span class="icon-moon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></span></button>
+        <button class="navbar__toggle-btn" data-rtl-toggle aria-label="Toggle RTL"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><text x="12" y="16" text-anchor="middle" fill="currentColor" stroke="none" font-family="system-ui,sans-serif" font-weight="700" font-size="11">RTL</text></svg></button>
+        <!-- Profile -->
+        <div class="navbar__profile">
+          <button class="navbar__profile-btn" aria-label="Profile menu" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </button>
+          <ul class="navbar__profile-dropdown">
+            <li><a href="login.html" class="navbar__dropdown-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>Login</a></li>
+            <li><a href="dashboard.html" class="navbar__dropdown-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>User Dashboard</a></li>
+            <li><a href="admin.html" class="navbar__dropdown-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Admin Dashboard</a></li>
+          </ul>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false"><span class="hamburger__line"></span><span class="hamburger__line"></span><span class="hamburger__line"></span></button>
+      </div>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="mobile-menu__close" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+<ul class="mobile-menu__list">
+      <li><a href="index.html" class="mobile-menu__link">Home</a></li><li><a href="home-2.html" class="mobile-menu__link active">Home 2</a></li><li><a href="about.html" class="mobile-menu__link">About</a></li><li><a href="services.html" class="mobile-menu__link">Services</a></li><li><a href="blog.html" class="mobile-menu__link">Blog</a></li><li><a href="contact.html" class="mobile-menu__link">Contact</a></li></ul>
+<div class="mobile-menu__actions"><button class="navbar__toggle-btn" data-theme-toggle aria-label="Toggle dark mode"><span class="icon-sun" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span><span class="icon-moon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></span></button><button class="navbar__toggle-btn" data-rtl-toggle aria-label="Toggle RTL"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><text x="12" y="16" text-anchor="middle" fill="currentColor" stroke="none" font-family="system-ui,sans-serif" font-weight="700" font-size="11">RTL</text></svg></button></div>
+
+  </div>
+
+  <main id="main-content">
+    <!-- ═══════════════════════════════════════════════════════════════════
+         SECTION 1: Video Background Hero with Search Bar
+         ═══════════════════════════════════════════════════════════════════ -->
+    <section class="hero hero--medium" id="hero-2" aria-label="Hero section">
+      <div class="hero__slider">
+        <div class="hero__slide active">
+          <div class="hero__slide-bg" style="background-image: url('https://images.unsplash.com/photo-1569949381669-ecf31ae8e613?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dG91cnxlbnwwfHwwfHx8MA%3D%3D');"></div>
+          <div class="hero__overlay"></div>
+        </div>
+      </div>
+      <div class="hero__content">
+        <span class="hero__label">Find Your Paradise</span>
+        <h1 class="hero__title">Where Will Your Next Adventure Take You?</h1>
+        <p class="hero__subtitle">Search from 500+ curated luxury experiences across 85 countries worldwide.</p>
+        <p class="hero__search-hint">500+ luxury experiences across 85 countries</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         SECTION 2: Trending Destinations (Horizontal Scroll)
+         ═══════════════════════════════════════════════════════════════════ -->
+    <section class="section" id="trending">
+      <div class="container">
+        <div class="flex-between" style="margin-bottom:var(--space-8);">
+          <div class="reveal">
+            <span class="section-label">Trending Now</span>
+            <h2 class="section-title">Trending Destinations</h2>
+          </div>
+          <a href="services.html" class="btn btn--outline" style="flex-shrink:0;">View All</a>
+        </div>
+      </div>
+      <div class="container" style="max-width:var(--container-wide);">
+        <div class="scroll-x stagger-children" style="padding-inline-start:var(--container-padding);">
+          <div class="trending-card">
+            <div class="trending-card__img" style="background-image: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHRyYXZlbHxlbnwwfHwwfHx8MA%3D%3D');width:100%;height:100%;"></div>
+            <div class="trending-card__info"><h3 class="trending-card__name">Amalfi Coast</h3><span class="trending-card__price">From $4,200</span></div>
+          </div>
+          <div class="trending-card">
+            <div class="trending-card__img" style="background-image: url('https://images.unsplash.com/photo-1615277716590-d87d101caa70?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHRvdXJ8ZW58MHx8MHx8fDA%3D');width:100%;height:100%;"></div>
+            <div class="trending-card__info"><h3 class="trending-card__name">Bora Bora</h3><span class="trending-card__price">From $6,800</span></div>
+          </div>
+          <div class="trending-card">
+            <div class="trending-card__img" style="background-image: url('https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHRyYXZlbHxlbnwwfHwwfHx8MA%3D%3D');width:100%;height:100%;"></div>
+            <div class="trending-card__info"><h3 class="trending-card__name">Marrakech</h3><span class="trending-card__price">From $2,900</span></div>
+          </div>
+          <div class="trending-card">
+            <div class="trending-card__img" style="background-image: url('https://images.unsplash.com/photo-1502003148287-a82ef80a6abc?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzJ8fHRyYXZlbHxlbnwwfHwwfHx8MA%3D%3D');width:100%;height:100%;"></div>
+            <div class="trending-card__info"><h3 class="trending-card__name">Patagonia</h3><span class="trending-card__price">From $5,500</span></div>
+          </div>
+          <div class="trending-card">
+            <div class="trending-card__img" style="background-image: url('https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzd8fHRyYXZlbHxlbnwwfHwwfHx8MA%3D%3D');width:100%;height:100%;"></div>
+            <div class="trending-card__info"><h3 class="trending-card__name">Seychelles</h3><span class="trending-card__price">From $7,200</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         SECTION 3: Tour Packages — Pricing Tiers
+         ═══════════════════════════════════════════════════════════════════ -->
+    <section class="section section--pearl" id="packages">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">Tour Packages</span>
+          <h2 class="section-title">Choose Your Experience Level</h2>
+          <p class="section-subtitle">From carefully curated essentials to the ultimate ultra-premium experience — find the perfect tier for your journey.</p>
+        </div>
+        <div class="grid-3 stagger-children">
+          <!-- Essential -->
+          <div class="pricing-card">
+            <div class="pricing-card__tier">Essential</div>
+            <div class="pricing-card__price">$2,499 <span>/ person</span></div>
+            <ul class="pricing-card__features">
+              <li class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> 4-Star Hotels</li>
+              <li class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Guided City Tours</li>
+              <li class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Airport Transfers</li>
+              <li class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Daily Breakfast</li>
+              <li class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Travel Insurance</li>
+            </ul>
+            <a href="contact.html" class="btn btn--outline" style="width:100%;">Get Started</a>
+          </div>
+          <!-- Luxury (Featured) -->
+          <div class="pricing-card featured">
+            <div class="pricing-card__tier">Luxury</div>
+            <div class="pricing-card__price">$5,999 <span>/ person</span></div>
+            <ul class="pricing-card__features">
+              <li class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> 5-Star Luxury Hotels</li>
+              <li class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Private Guide & Driver</li>
+              <li class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Business Class Flights</li>
+              <li class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> All Meals Included</li>
+              <li class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Exclusive Experiences</li>
+              <li class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> 24/7 Concierge</li>
+            </ul>
+            <a href="contact.html" class="btn btn--primary" style="width:100%;">Choose Luxury</a>
+          </div>
+          <!-- Ultra Premium -->
+          <div class="pricing-card">
+            <div class="pricing-card__tier">Ultra Premium</div>
+            <div class="pricing-card__price">$12,999 <span>/ person</span></div>
+            <ul class="pricing-card__features">
+              <li class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Private Villas & Suites</li>
+              <li class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Helicopter Transfers</li>
+              <li class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> First Class / Private Jet</li>
+              <li class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Private Chef & Staff</li>
+              <li class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Yacht & Spa Access</li>
+              <li class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Fully Bespoke Itinerary</li>
+            </ul>
+            <a href="contact.html" class="btn btn--outline" style="width:100%;">Contact Us</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         SECTION 4: Travel Blog Preview
+         ═══════════════════════════════════════════════════════════════════ -->
+    <section class="section" id="blog-preview">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">From The Journal</span>
+          <h2 class="section-title">Travel Stories & Inspiration</h2>
+          <p class="section-subtitle">Expert insights, destination guides, and curated travel narratives from our team of seasoned explorers.</p>
+        </div>
+        <div class="grid-3 stagger-children">
+          <article class="card hover-lift">
+            <div class="card__image-wrap hover-img-zoom"><div class="card__image" style="background-image: url('https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8SXNsYW5kfGVufDB8fDB8fHww');"></div></div>
+            <div class="card__body">
+              <span class="blog-card__category">Destinations</span>
+              <h3 class="card__title">The Ultimate Guide to Greek Island Hopping</h3>
+              <p class="card__text">Discover the best routes, hidden gems, and luxury stays across the Cyclades and Dodecanese islands.</p>
+              <div class="card__meta"><span class="blog-card__date">July 15, 2024</span></div>
+              <a href="blog-details.html" class="blog-card__read-more">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </div>
+          </article>
+          <article class="card hover-lift">
+            <div class="card__image-wrap hover-img-zoom"><div class="card__image" style="background-image: url('https://images.unsplash.com/photo-1500043357865-c6b8827edf10?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8SXNsYW5kfGVufDB8fDB8fHww');"></div></div>
+            <div class="card__body">
+              <span class="blog-card__category">Luxury Travel</span>
+              <h3 class="card__title">10 Private Island Resorts Worth Every Penny</h3>
+              <p class="card__text">From the Maldives to Fiji — the most exclusive private island retreats for the discerning traveler.</p>
+              <div class="card__meta"><span class="blog-card__date">July 10, 2024</span></div>
+              <a href="blog-details.html" class="blog-card__read-more">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </div>
+          </article>
+          <article class="card hover-lift">
+            <div class="card__image-wrap hover-img-zoom"><div class="card__image" style="background-image: url('https://images.unsplash.com/photo-1548275840-cd9d5c170ce5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fElzbGFuZHxlbnwwfHwwfHx8MA%3D%3D');"></div></div>
+            <div class="card__body">
+              <span class="blog-card__category">Adventure</span>
+              <h3 class="card__title">Safari Season: When to Visit Africa's Big Five</h3>
+              <p class="card__text">Expert timing guide for witnessing the Great Migration and finding the best wildlife encounters.</p>
+              <div class="card__meta"><span class="blog-card__date">July 5, 2024</span></div>
+              <a href="blog-details.html" class="blog-card__read-more">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         SECTION 5: Partner Brands
+         ═══════════════════════════════════════════════════════════════════ -->
+    <section class="section section--pearl" id="partners">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">Trusted By</span>
+          <h2 class="section-title">Our Premium Partners</h2>
+        </div>
+        <div class="partners reveal">
+          <div class="partners__logo" style="height:40px;width:120px;background:var(--color-bg-card);border-radius:var(--radius-sm);border:1px solid var(--color-border);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:0.9rem;color:var(--color-text-secondary);">Ritz-Carlton</div>
+          <div class="partners__logo" style="height:40px;width:120px;background:var(--color-bg-card);border-radius:var(--radius-sm);border:1px solid var(--color-border);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:0.9rem;color:var(--color-text-secondary);">Four Seasons</div>
+          <div class="partners__logo" style="height:40px;width:120px;background:var(--color-bg-card);border-radius:var(--radius-sm);border:1px solid var(--color-border);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:0.9rem;color:var(--color-text-secondary);">Aman Resorts</div>
+          <div class="partners__logo" style="height:40px;width:120px;background:var(--color-bg-card);border-radius:var(--radius-sm);border:1px solid var(--color-border);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:0.9rem;color:var(--color-text-secondary);">Emirates</div>
+          <div class="partners__logo" style="height:40px;width:120px;background:var(--color-bg-card);border-radius:var(--radius-sm);border:1px solid var(--color-border);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:0.9rem;color:var(--color-text-secondary);">Singapore Air</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         SECTION 6: Booking Enquiry Form
+         ═══════════════════════════════════════════════════════════════════ -->
+    <section class="section" id="enquiry">
+      <div class="container">
+        <div class="enquiry-card reveal" style="background:var(--color-bg-card);border:1px solid var(--color-border);">
+          <h2 class="enquiry-card__title">Plan Your Dream Journey</h2>
+          <p class="section-subtitle" style="text-align:center;margin:0 auto var(--space-8);max-width:480px;">Share your travel dreams with us and our expert designers will craft a bespoke itinerary just for you.</p>
+          <form data-validate>
+            <div class="grid-2" style="gap:var(--space-4);">
+              <div class="form-group"><label class="form-label" for="eq-name">Full Name</label><input type="text" id="eq-name" class="form-input" placeholder="Your full name" required></div>
+              <div class="form-group"><label class="form-label" for="eq-email">Email</label><input type="email" id="eq-email" class="form-input" placeholder="Your email" required></div>
+              <div class="form-group"><label class="form-label" for="eq-phone">Phone</label><input type="tel" id="eq-phone" class="form-input" placeholder="+1 (555) 000-0000"></div>
+              <div class="form-group"><label class="form-label" for="eq-dest">Destination</label><input type="text" id="eq-dest" class="form-input" placeholder="Preferred destination"></div>
+              <div class="form-group"><label class="form-label" for="eq-date">Travel Dates</label><input type="text" id="eq-date" class="form-input" placeholder="Approximate dates"></div>
+              <div class="form-group"><label class="form-label" for="eq-guests">Travelers</label><input type="text" id="eq-guests" class="form-input" placeholder="Number of travelers"></div>
+            </div>
+            <div class="form-group" style="margin-top:var(--space-4);"><label class="form-label" for="eq-msg">Special Requests</label><textarea id="eq-msg" class="form-input" placeholder="Tell us about your dream journey..." rows="4"></textarea></div>
+            <button type="submit" class="btn btn--primary btn--lg" style="width:100%;margin-top:var(--space-4);">Submit Enquiry</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <div style="height:var(--space-12);"></div>
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <!-- Awards Strip -->
+      <div class="footer__awards">
+        <div class="footer__award">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+          <span>Travel Awards 2024</span>
+        </div>
+        <div class="footer__award">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>ABTA Protected</span>
+        </div>
+        <div class="footer__award">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <span>5-Star Rated</span>
+        </div>
+        <div class="footer__award">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          <span>Global Network</span>
+        </div>
+      </div>
+
+      <!-- Footer Columns -->
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a href="index.html" class="footer__logo">
+            <svg class="footer__logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" fill="currentColor" stroke="none"/></svg>
+            <div>
+              <span class="footer__logo-text">Luxe Voyages</span>
+              <span class="footer__logo-sub">Luxury Travel</span>
+            </div>
+          </a>
+          <p class="footer__desc">Award-winning luxury travel agency crafting bespoke journeys to the world's most extraordinary destinations since 2005.</p>
+          <div class="footer__social">
+            <a href="#" class="footer__social-link" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+            <a href="#" class="footer__social-link" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            <a href="#" class="footer__social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="#" class="footer__social-link" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z"/></svg></a>
+          </div>
+        </div>
+
+        <div class="footer__column">
+          <h4 class="footer__heading">Destinations</h4>
+          <ul class="footer__links">
+            <li><a href="services.html" class="footer__link">Europe Tours</a></li>
+            <li><a href="services.html" class="footer__link">Asia Journeys</a></li>
+            <li><a href="services.html" class="footer__link">Africa Safaris</a></li>
+            <li><a href="services.html" class="footer__link">Americas</a></li>
+            <li><a href="services.html" class="footer__link">Oceania</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__column">
+          <h4 class="footer__heading">Company</h4>
+          <ul class="footer__links">
+            <li><a href="index.html" class="footer__link">Home</a></li>
+            <li><a href="home-2.html" class="footer__link">Home 2</a></li>
+            <li><a href="about.html" class="footer__link">About Us</a></li>
+            <li><a href="services.html" class="footer__link">Services</a></li>
+            <li><a href="blog.html" class="footer__link">Travel Blog</a></li>
+            <li><a href="contact.html" class="footer__link">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__column">
+          <h4 class="footer__heading">Support</h4>
+          <ul class="footer__links">
+            <li><a href="dashboard.html" class="footer__link">My Dashboard</a></li>
+            <li><a href="sitemap.html" class="footer__link">Sitemap</a></li>
+            <li><a href="signup.html" class="footer__link">Register</a></li>
+            <li><a href="privacy-policy.html" class="footer__link">Privacy Policy</a></li>
+            <li><a href="terms-conditions.html" class="footer__link">Terms & Conditions</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__newsletter">
+          <h4 class="footer__heading">Newsletter</h4>
+          <p class="footer__newsletter-text">Get exclusive travel inspiration and special offers delivered to your inbox.</p>
+          <form class="footer__newsletter-form">
+            <input type="email" class="footer__newsletter-input" placeholder="Your email" aria-label="Email for newsletter">
+            <button type="submit" class="footer__newsletter-btn">Join</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; 2024 Luxe Voyages. All rights reserved.</p>
+        <ul class="footer__bottom-links">
+          <li><a href="privacy-policy.html" class="footer__bottom-link">Privacy</a></li>
+          <li><a href="terms-conditions.html" class="footer__bottom-link">Terms</a></li>
+          <li><a href="sitemap.html" class="footer__bottom-link">Sitemap</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <button id="back-to-top" class="btn btn--icon btn--primary" aria-label="Back to top" style="position:fixed;bottom:var(--space-6);inset-inline-end:var(--space-6);z-index:var(--z-sticky);opacity:0;visibility:hidden;transition:all var(--transition-base);box-shadow:var(--shadow-lg);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><polyline points="18 15 12 9 6 15"/></svg></button>
+  <style>#back-to-top.visible{opacity:1;visibility:visible;}</style>
+  <script src="js/bundle.js" defer></script>
+</body>
+</html>

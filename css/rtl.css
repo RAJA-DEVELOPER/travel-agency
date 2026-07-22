@@ -1,0 +1,95 @@
+/* ==========================================================================
+   RTL — Right-to-Left Layout Support
+   ========================================================================== */
+
+[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+/* ── Navbar ───────────────────────────────────────────────────────────── */
+[dir="rtl"] .navbar__menu {
+  flex-direction: row-reverse;
+}
+
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+[dir="rtl"] .hero__label::before {
+  order: 1;
+}
+
+/* ── Section Label ────────────────────────────────────────────────────── */
+[dir="rtl"] .section-label::before {
+  order: 1;
+}
+
+[dir="rtl"] .section-header {
+  text-align: center;
+}
+
+/* ── Cards ────────────────────────────────────────────────────────────── */
+[dir="rtl"] .card--horizontal {
+  grid-template-columns: 1fr 260px;
+}
+
+[dir="rtl"] .card--horizontal .card__image-wrap {
+  order: 2;
+}
+
+/* ── Footer ───────────────────────────────────────────────────────────── */
+[dir="rtl"] .footer__bottom {
+  flex-direction: row-reverse;
+}
+
+/* ── Breadcrumb ───────────────────────────────────────────────────────── */
+[dir="rtl"] .breadcrumb {
+  flex-direction: row-reverse;
+}
+
+/* ── Hero Arrows ──────────────────────────────────────────────────────── */
+[dir="rtl"] .hero__arrow svg {
+  transform: scaleX(-1);
+}
+
+/* ── Accordion Icon ───────────────────────────────────────────────────── */
+[dir="rtl"] .accordion__trigger {
+  text-align: right;
+}
+
+/* ── Mobile Menu ──────────────────────────────────────────────────────── */
+[dir="rtl"] .mobile-menu {
+  transform: translateX(-100%);
+}
+
+[dir="rtl"] .mobile-menu.active {
+  transform: translateX(0);
+}
+
+/* ── Dashboard ────────────────────────────────────────────────────────── */
+[dir="rtl"] .dash-layout {
+  direction: rtl;
+}
+
+[dir="rtl"] .dash-sidebar {
+  border-inline-end: 1px solid var(--color-border);
+  border-inline-start: none;
+}
+
+/* ── General Mirroring ────────────────────────────────────────────────── */
+[dir="rtl"] .animated-underline::after {
+  inset-inline-start: auto;
+  inset-inline-end: 0;
+}
+
+/* ── Lists ────────────────────────────────────────────────────────────── */
+[dir="rtl"] ul,
+[dir="rtl"] ol {
+  padding-inline-start: var(--space-6);
+  padding-inline-end: 0;
+}
+
+/* ── Responsive Override ──────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  [dir="rtl"] .section-header {
+    text-align: start;
+  }
+}

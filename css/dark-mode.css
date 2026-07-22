@@ -1,0 +1,140 @@
+/* ==========================================================================
+   DARK MODE — Override Styles
+   Extended overrides beyond what variables.css handles
+   ========================================================================== */
+
+[data-theme="dark"] body {
+  color-scheme: dark;
+}
+
+/* ── Navbar ───────────────────────────────────────────────────────────── */
+[data-theme="dark"] .navbar.scrolled {
+  background: rgba(10, 14, 23, 0.95);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+[data-theme="dark"] .navbar.scrolled .navbar__link {
+  color: var(--color-text-secondary);
+}
+
+[data-theme="dark"] .navbar.scrolled .hamburger__line {
+  background: var(--color-text-primary);
+}
+
+/* ── Cards ────────────────────────────────────────────────────────────── */
+[data-theme="dark"] .card {
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+[data-theme="dark"] .card--gold-border {
+  border-color: rgba(212,175,55,0.15);
+}
+
+[data-theme="dark"] .card--gold-border:hover {
+  border-color: rgba(212,175,55,0.4);
+}
+
+/* ── Form Elements ────────────────────────────────────────────────────── */
+[data-theme="dark"] .form-input,
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+  background: var(--color-bg-tertiary);
+  border-color: var(--color-border);
+  color: var(--color-text-primary);
+}
+
+/* ── Accordion ────────────────────────────────────────────────────────── */
+[data-theme="dark"] .accordion {
+  border-color: var(--color-border);
+}
+
+[data-theme="dark"] .accordion__trigger {
+  background: var(--color-bg-card);
+}
+
+[data-theme="dark"] .accordion__trigger:hover {
+  background: var(--color-bg-tertiary);
+}
+
+/* ── Buttons ──────────────────────────────────────────────────────────── */
+[data-theme="dark"] .btn--secondary {
+  background: var(--color-bg-tertiary);
+  color: var(--color-text-primary);
+  border-color: var(--color-border);
+}
+
+[data-theme="dark"] .btn--ghost:hover {
+  background: var(--color-bg-tertiary);
+}
+
+/* ── Tags ─────────────────────────────────────────────────────────────── */
+[data-theme="dark"] .tag {
+  border-color: var(--color-border);
+  color: var(--color-text-secondary);
+}
+
+/* ── Sections ─────────────────────────────────────────────────────────── */
+[data-theme="dark"] .section--pearl {
+  background-color: var(--color-bg-secondary);
+}
+
+[data-theme="dark"] .section--gradient {
+  background: linear-gradient(180deg, var(--color-bg-primary) 0%, var(--color-bg-secondary) 100%);
+}
+
+/* ── Dividers ─────────────────────────────────────────────────────────── */
+[data-theme="dark"] .divider {
+  background: var(--color-border);
+}
+
+/* ── Tables ───────────────────────────────────────────────────────────── */
+[data-theme="dark"] table {
+  border-color: var(--color-border);
+}
+
+[data-theme="dark"] th {
+  background: var(--color-bg-tertiary);
+  color: var(--color-text-primary);
+}
+
+[data-theme="dark"] td {
+  border-color: var(--color-border);
+}
+
+/* ── Selection ────────────────────────────────────────────────────────── */
+[data-theme="dark"] ::selection {
+  background-color: rgba(212, 175, 55, 0.3);
+  color: #fff;
+}
+
+/* ── Mobile Menu ──────────────────────────────────────────────────────── */
+[data-theme="dark"] .mobile-menu {
+  background: var(--color-bg-primary);
+}
+
+[data-theme="dark"] .mobile-menu__link {
+  color: var(--color-text-primary);
+  border-bottom-color: var(--color-border);
+}
+
+/* ── Footer (already dark, minimal changes) ───────────────────────────── */
+[data-theme="dark"] .footer {
+  background: #050810;
+}
+
+/* ── Dashboard Sidebar ────────────────────────────────────────────────── */
+[data-theme="dark"] .dash-sidebar {
+  background: var(--color-bg-secondary);
+  border-color: var(--color-border);
+}
+
+[data-theme="dark"] .dash-sidebar__link:hover,
+[data-theme="dark"] .dash-sidebar__link.active {
+  background: var(--color-bg-tertiary);
+}
+
+/* ── Breadcrumb on dark pages ─────────────────────────────────────────── */
+[data-theme="dark"] .page-hero {
+  background: #060A12;
+}

@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Luxe Voyages — Award-winning luxury travel agency offering bespoke tours, honeymoon packages, and premium travel experiences to the world's most exclusive destinations.">
+  <meta name="keywords" content="luxury travel, premium tours, bespoke holidays, honeymoon packages, luxury vacations">
+  <title>Luxe Voyages — Luxury Travel & Bespoke Experiences</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/dark-mode.css">
+  <link rel="stylesheet" href="css/rtl.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body class="page-has-hero">
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Page Transition Overlay -->
+  <div class="page-transition"></div>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       NAVBAR
+       ═══════════════════════════════════════════════════════════════════ -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo" aria-label="Luxe Voyages Home">
+        <svg class="navbar__logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" fill="currentColor" stroke="none"/></svg>
+        <div>
+          <span class="navbar__logo-text">Luxe Voyages</span>
+          <span class="navbar__logo-sub">Luxury Travel</span>
+        </div>
+      </a>
+
+      <ul class="navbar__menu">
+        <li class="navbar__item">
+          <a href="index.html" class="navbar__link active">Home</a>
+        </li>
+        <li class="navbar__item"><a href="home-2.html" class="navbar__link">Home 2</a></li>
+        <li class="navbar__item"><a href="about.html" class="navbar__link">About</a></li>
+        <li class="navbar__item">
+          <a href="services.html" class="navbar__link">Services</a>
+        </li>
+        <li class="navbar__item">
+          <a href="blog.html" class="navbar__link">Blog</a>
+        </li>
+        <li class="navbar__item"><a href="contact.html" class="navbar__link">Contact</a></li>
+      </ul>
+
+      <div class="navbar__actions">
+        <!-- Theme Toggle -->
+        <button class="navbar__toggle-btn" data-theme-toggle aria-label="Toggle dark mode">
+          <span class="icon-sun" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span>
+          <span class="icon-moon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></span>
+        </button>
+
+        <!-- RTL Toggle -->
+        <button class="navbar__toggle-btn" data-rtl-toggle aria-label="Toggle RTL layout">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><text x="12" y="16" text-anchor="middle" fill="currentColor" stroke="none" font-family="system-ui,sans-serif" font-weight="700" font-size="11">RTL</text></svg>
+        </button>
+
+        <!-- Profile -->
+        <div class="navbar__profile">
+          <button class="navbar__profile-btn" aria-label="Profile menu" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </button>
+          <ul class="navbar__profile-dropdown">
+            <li><a href="login.html" class="navbar__dropdown-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>Login</a></li>
+            <li><a href="dashboard.html" class="navbar__dropdown-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>User Dashboard</a></li>
+            <li><a href="admin.html" class="navbar__dropdown-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Admin Dashboard</a></li>
+          </ul>
+        </div>
+
+        <!-- Hamburger (Mobile) -->
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span class="hamburger__line"></span>
+          <span class="hamburger__line"></span>
+          <span class="hamburger__line"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="mobile-menu__close" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <ul class="mobile-menu__list">
+      <li><a href="index.html" class="mobile-menu__link active">Home</a></li>
+      <li><a href="home-2.html" class="mobile-menu__link">Home 2</a></li>
+      <li><a href="about.html" class="mobile-menu__link">About</a></li>
+      <li><a href="services.html" class="mobile-menu__link">Services</a></li>
+      <li><a href="blog.html" class="mobile-menu__link">Blog</a></li>
+      <li><a href="contact.html" class="mobile-menu__link">Contact</a></li>
+      </ul>
+<div class="mobile-menu__actions">
+      <button class="navbar__toggle-btn" data-theme-toggle aria-label="Toggle dark mode">
+        <span class="icon-sun" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span>
+        <span class="icon-moon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></span>
+      </button>
+      <button class="navbar__toggle-btn" data-rtl-toggle aria-label="Toggle RTL">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><text x="12" y="16" text-anchor="middle" fill="currentColor" stroke="none" font-family="system-ui,sans-serif" font-weight="700" font-size="11">RTL</text></svg>
+      </button>
+    </div>
+    <div class="mobile-menu__cta">
+
+    </div>
+  </div>
+
+  <main id="main-content">
+    <!-- ═══════════════════════════════════════════════════════════════════
+         SECTION 1: Cinematic Hero Slider
+         ═══════════════════════════════════════════════════════════════════ -->
+    <section class="hero" id="hero" aria-label="Hero slider">
+      <div class="hero__slider">
+        <!-- Slide 1 -->
+        <div class="hero__slide active">
+          <div class="hero__slide-bg" style="background-image: url('assets/images/index_hero_1.png');"></div>
+          <div class="hero__overlay"></div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="hero__slide">
+          <div class="hero__slide-bg" style="background-image: url('assets/images/index_hero_2.png');"></div>
+          <div class="hero__overlay"></div>
+        </div>
+        <!-- Slide 3 -->
+        <div class="hero__slide">
+          <div class="hero__slide-bg" style="background-image: url('assets/images/index_hero_3.png');"></div>
+          <div class="hero__overlay"></div>
+        </div>
+      </div>
+
+      <div class="hero__content">
+        <span class="hero__label">Luxury Travel Agency</span>
+        <h1 class="hero__title">Discover the World's Most Extraordinary Destinations</h1>
+        <p class="hero__subtitle">Bespoke journeys crafted with unparalleled attention to detail. From private island retreats to cultural odysseys — every moment, meticulously curated.</p>
+        <div class="hero__actions">
+          <a href="services.html" class="btn btn--primary btn--lg">Explore Journeys</a>
+          <a href="about.html" class="btn btn--outline-white btn--lg">Our Story</a>
+        </div>
+      </div>
+
+      <!-- Slider Controls -->
+      <div class="hero__controls">
+        <button class="hero__arrow hero__arrow--prev" aria-label="Previous slide">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="hero__dots">
+          <button class="hero__dot active" aria-label="Go to slide 1"></button>
+          <button class="hero__dot" aria-label="Go to slide 2"></button>
+          <button class="hero__dot" aria-label="Go to slide 3"></button>
+        </div>
+        <button class="hero__arrow hero__arrow--next" aria-label="Next slide">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="hero__scroll" aria-hidden="true">
+        <span>Scroll</span>
+        <div class="hero__scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         SECTION 2: Signature Experiences
+         ═══════════════════════════════════════════════════════════════════ -->
+    <section class="section" id="experiences">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">Curated Experiences</span>
+          <h2 class="section-title">Signature Travel Experiences</h2>
+          <p class="section-subtitle">Handcrafted journeys that transcend ordinary travel. Each experience is designed to create lasting memories in the world's most remarkable destinations.</p>
+        </div>
+
+        <div class="grid-4 stagger-children">
+          <!-- Card 1: Honeymoon -->
+          <div class="experiences__card hover-img-zoom overlay-shine">
+            <img src="assets/images/index_exp_3.png" alt="Honeymoon Retreats" style="width:100%;height:100%;object-fit:cover;" class="experiences__img">
+            <div class="experiences__overlay">
+              <span class="badge badge--gold" style="margin-bottom:auto;align-self:flex-start;">Popular</span>
+              <h3 class="experiences__name">Honeymoon Retreats</h3>
+              <p class="experiences__desc">Private villas, sunset dinners, and once-in-a-lifetime romantic escapes in paradise.</p>
+            </div>
+          </div>
+
+          <!-- Card 2: Adventure -->
+          <div class="experiences__card hover-img-zoom overlay-shine">
+            <img src="assets/images/index_exp_1.png" alt="Adventure Expeditions" style="width:100%;height:100%;object-fit:cover;" class="experiences__img">
+            <div class="experiences__overlay">
+              <h3 class="experiences__name">Adventure Expeditions</h3>
+              <p class="experiences__desc">From Himalayan treks to African safaris — extraordinary adventures for the bold.</p>
+            </div>
+          </div>
+
+          <!-- Card 3: Cultural -->
+          <div class="experiences__card hover-img-zoom overlay-shine">
+            <img src="assets/images/index_exp_2.png" alt="Cultural Odysseys" style="width:100%;height:100%;object-fit:cover;" class="experiences__img">
+            <div class="experiences__overlay">
+              <h3 class="experiences__name">Cultural Odysseys</h3>
+              <p class="experiences__desc">Immerse in ancient civilizations, local traditions, and world heritage wonders.</p>
+            </div>
+          </div>
+
+          <!-- Card 4: Wildlife -->
+          <div class="experiences__card hover-img-zoom overlay-shine">
+            <div style="width:100%;height:100%;background-image: url('https://loremflickr.com/800/600/luxury,travel?random=181');" class="experiences__img"></div>
+            <div class="experiences__overlay">
+              <h3 class="experiences__name">Wildlife Encounters</h3>
+              <p class="experiences__desc">Exclusive game drives and nature encounters in the world's finest reserves.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         SECTION 3: Featured Destinations Gallery
+         ═══════════════════════════════════════════════════════════════════ -->
+    <section class="section section--pearl" id="destinations">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">Destinations</span>
+          <h2 class="section-title">Explore Our Destinations</h2>
+          <p class="section-subtitle">From the azure coasts of the Mediterranean to the untouched wilderness of Patagonia — your dream destination awaits.</p>
+        </div>
+
+        <div class="dest-gallery reveal">
+          <div class="dest-gallery__item hover-img-zoom">
+            <div class="dest-gallery__img" style="background-image: url('https://plus.unsplash.com/premium_photo-1661964149725-fbf14eabd38c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8R3JlZWNlfGVufDB8fDB8fHww');min-height:420px;"></div>
+            <div class="dest-gallery__info">
+              <h3 class="dest-gallery__name">Santorini</h3>
+              <span class="dest-gallery__country">Greece</span>
+            </div>
+          </div>
+          <div class="dest-gallery__item hover-img-zoom">
+            <div class="dest-gallery__img" style="background-image: url('https://images.unsplash.com/photo-1476158085676-e67f57ed9ed7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8aW5kb25lc2lhfGVufDB8fDB8fHww');"></div>
+            <div class="dest-gallery__info">
+              <h3 class="dest-gallery__name">Bali</h3>
+              <span class="dest-gallery__country">Indonesia</span>
+            </div>
+          </div>
+          <div class="dest-gallery__item hover-img-zoom">
+            <div class="dest-gallery__img" style="background-image: url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8VUFFfGVufDB8fDB8fHww');"></div>
+            <div class="dest-gallery__info">
+              <h3 class="dest-gallery__name">Dubai</h3>
+              <span class="dest-gallery__country">UAE</span>
+            </div>
+          </div>
+          <div class="dest-gallery__item hover-img-zoom">
+            <div class="dest-gallery__img" style="background-image: url('https://images.unsplash.com/photo-1578922746465-3a80a228f223?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bWFsZGl2ZXN8ZW58MHx8MHx8fDA%3D');"></div>
+            <div class="dest-gallery__info">
+              <h3 class="dest-gallery__name">Maldives</h3>
+              <span class="dest-gallery__country">South Asia</span>
+            </div>
+          </div>
+          <div class="dest-gallery__item hover-img-zoom">
+            <div class="dest-gallery__img" style="background-image: url('https://images.unsplash.com/photo-1570161766218-f8488ebb8078?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8U3dpdHplcmxhbmR8ZW58MHx8MHx8fDA%3D');"></div>
+            <div class="dest-gallery__info">
+              <h3 class="dest-gallery__name">Swiss Alps</h3>
+              <span class="dest-gallery__country">Switzerland</span>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         SECTION 4: Why Choose Us — Stats & Value Props
+         ═══════════════════════════════════════════════════════════════════ -->
+    <section class="section section--dark" id="why-us">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">Why Luxe Voyages</span>
+          <h2 class="section-title">Crafting Excellence Since 2005</h2>
+          <p class="section-subtitle">Numbers that reflect our commitment to extraordinary travel experiences and unmatched service.</p>
+        </div>
+
+        <div class="stats-grid reveal">
+          <div class="stat-item">
+            <div class="stat-item__value" data-counter="85" data-suffix="+">0</div>
+            <div class="stat-item__label" style="color:rgba(255,255,255,0.6);">Countries Covered</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-item__value" data-counter="15000" data-suffix="+">0</div>
+            <div class="stat-item__label" style="color:rgba(255,255,255,0.6);">Happy Travelers</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-item__value" data-counter="42">0</div>
+            <div class="stat-item__label" style="color:rgba(255,255,255,0.6);">Industry Awards</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-item__value" data-counter="19">0</div>
+            <div class="stat-item__label" style="color:rgba(255,255,255,0.6);">Years of Excellence</div>
+          </div>
+        </div>
+
+        <div class="value-props stagger-children" style="margin-top:var(--space-16);">
+          <div class="value-prop" style="background:rgba(255,255,255,0.03);border-color:rgba(255,255,255,0.08);">
+            <div class="value-prop__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3 class="value-prop__title" style="color:#fff;">Trusted & Secure</h3>
+            <p class="value-prop__text" style="color:rgba(255,255,255,0.6);">ABTA & ATOL protected bookings with 24/7 concierge support throughout your journey.</p>
+          </div>
+          <div class="value-prop" style="background:rgba(255,255,255,0.03);border-color:rgba(255,255,255,0.08);">
+            <div class="value-prop__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3h12l4 6-10 13L2 9z"/><path d="M2 9h20"/><path d="M10 3l-4 6 6 13 6-13-4-6"/></svg>
+            </div>
+            <h3 class="value-prop__title" style="color:#fff;">Bespoke Luxury</h3>
+            <p class="value-prop__text" style="color:rgba(255,255,255,0.6);">Every itinerary handcrafted by expert travel designers to match your unique preferences.</p>
+          </div>
+          <div class="value-prop" style="background:rgba(255,255,255,0.03);border-color:rgba(255,255,255,0.08);">
+            <div class="value-prop__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+            </div>
+            <h3 class="value-prop__title" style="color:#fff;">Global Network</h3>
+            <p class="value-prop__text" style="color:rgba(255,255,255,0.6);">Exclusive partnerships with the world's finest hotels, airlines, and experience providers.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         SECTION 5: Testimonials Carousel
+         ═══════════════════════════════════════════════════════════════════ -->
+    <section class="section" id="testimonials">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">Testimonials</span>
+          <h2 class="section-title">What Our Travelers Say</h2>
+          <p class="section-subtitle">Real stories from real travelers who entrusted us with their most cherished journeys.</p>
+        </div>
+
+        <div class="testimonials-slider reveal" id="testimonials-slider">
+          <div class="testimonials-track">
+            <!-- Testimonial 1 -->
+            <div class="testimonial-card">
+              <div class="testimonial-card__inner">
+                <div class="stars" style="justify-content:center;margin-bottom:var(--space-5);">
+                  <svg viewBox="0 0 24 24" fill="#D4AF37" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="#D4AF37" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="#D4AF37" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="#D4AF37" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="#D4AF37" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <p class="testimonial-card__quote">Our Maldives honeymoon was beyond anything we imagined. The private water villa, the sunset cruise, the underwater dining — every moment was pure magic. Luxe Voyages made our dreams a reality.</p>
+                <div class="testimonial-card__author">
+                  <div class="avatar avatar--gold" style="width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(212,175,55,0.15);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--color-gold)" stroke-width="1.5" width="24" height="24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+                  <div>
+                    <div class="testimonial-card__name">Sarah & James Mitchell</div>
+                    <div class="testimonial-card__role">Honeymoon — Maldives</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div class="testimonial-card">
+              <div class="testimonial-card__inner">
+                <div class="stars" style="justify-content:center;margin-bottom:var(--space-5);">
+                  <svg viewBox="0 0 24 24" fill="#D4AF37" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="#D4AF37" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="#D4AF37" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="#D4AF37" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="#D4AF37" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <p class="testimonial-card__quote">The African safari organized by Luxe Voyages was life-changing. From the luxurious tented camp to our private guide — it was the most incredible family experience we've ever had.</p>
+                <div class="testimonial-card__author">
+                  <div class="avatar avatar--gold" style="width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(212,175,55,0.15);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--color-gold)" stroke-width="1.5" width="24" height="24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+                  <div>
+                    <div class="testimonial-card__name">The Anderson Family</div>
+                    <div class="testimonial-card__role">Family Safari — Kenya</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div class="testimonial-card">
+              <div class="testimonial-card__inner">
+                <div class="stars" style="justify-content:center;margin-bottom:var(--space-5);">
+                  <svg viewBox="0 0 24 24" fill="#D4AF37" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="#D4AF37" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="#D4AF37" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="#D4AF37" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="#D4AF37" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <p class="testimonial-card__quote">As a corporate travel manager, I've worked with many agencies. Luxe Voyages stands apart — their attention to detail and executive-level service is unmatched in the industry.</p>
+                <div class="testimonial-card__author">
+                  <div class="avatar avatar--gold" style="width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(212,175,55,0.15);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--color-gold)" stroke-width="1.5" width="24" height="24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg></div>
+                  <div>
+                    <div class="testimonial-card__name">Richard Thornton</div>
+                    <div class="testimonial-card__role">Corporate Travel — Global</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         SECTION 6: Newsletter & CTA
+         ═══════════════════════════════════════════════════════════════════ -->
+    <section class="section" id="newsletter">
+      <div class="container">
+        <div class="newsletter-cta reveal">
+          <h2 class="newsletter-cta__title">Begin Your Extraordinary Journey</h2>
+          <p class="newsletter-cta__text">Subscribe to receive exclusive travel insights, early access to new destinations, and curated offers from our travel designers.</p>
+          <form class="newsletter-cta__form" data-validate>
+            <input type="email" class="newsletter-cta__input form-input" placeholder="Enter your email" required aria-label="Email address">
+            <button type="submit" class="btn btn--primary">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <!-- Awards Strip -->
+      <div class="footer__awards">
+        <div class="footer__award">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+          <span>Travel Awards 2024</span>
+        </div>
+        <div class="footer__award">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>ABTA Protected</span>
+        </div>
+        <div class="footer__award">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <span>5-Star Rated</span>
+        </div>
+        <div class="footer__award">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          <span>Global Network</span>
+        </div>
+      </div>
+
+      <!-- Footer Columns -->
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a href="index.html" class="footer__logo">
+            <svg class="footer__logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" fill="currentColor" stroke="none"/></svg>
+            <div>
+              <span class="footer__logo-text">Luxe Voyages</span>
+              <span class="footer__logo-sub">Luxury Travel</span>
+            </div>
+          </a>
+          <p class="footer__desc">Award-winning luxury travel agency crafting bespoke journeys to the world's most extraordinary destinations since 2005.</p>
+          <div class="footer__social">
+            <a href="#" class="footer__social-link" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+            <a href="#" class="footer__social-link" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            <a href="#" class="footer__social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="#" class="footer__social-link" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z"/></svg></a>
+          </div>
+        </div>
+
+        <div class="footer__column">
+          <h4 class="footer__heading">Destinations</h4>
+          <ul class="footer__links">
+            <li><a href="services.html" class="footer__link">Europe Tours</a></li>
+            <li><a href="services.html" class="footer__link">Asia Journeys</a></li>
+            <li><a href="services.html" class="footer__link">Africa Safaris</a></li>
+            <li><a href="services.html" class="footer__link">Americas</a></li>
+            <li><a href="services.html" class="footer__link">Oceania</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__column">
+          <h4 class="footer__heading">Company</h4>
+          <ul class="footer__links">
+            <li><a href="index.html" class="footer__link">Home</a></li>
+            <li><a href="home-2.html" class="footer__link">Home 2</a></li>
+            <li><a href="about.html" class="footer__link">About Us</a></li>
+            <li><a href="services.html" class="footer__link">Services</a></li>
+            <li><a href="blog.html" class="footer__link">Travel Blog</a></li>
+            <li><a href="contact.html" class="footer__link">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__column">
+          <h4 class="footer__heading">Support</h4>
+          <ul class="footer__links">
+            <li><a href="dashboard.html" class="footer__link">My Dashboard</a></li>
+            <li><a href="sitemap.html" class="footer__link">Sitemap</a></li>
+            <li><a href="signup.html" class="footer__link">Register</a></li>
+            <li><a href="privacy-policy.html" class="footer__link">Privacy Policy</a></li>
+            <li><a href="terms-conditions.html" class="footer__link">Terms & Conditions</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__newsletter">
+          <h4 class="footer__heading">Newsletter</h4>
+          <p class="footer__newsletter-text">Get exclusive travel inspiration and special offers delivered to your inbox.</p>
+          <form class="footer__newsletter-form">
+            <input type="email" class="footer__newsletter-input" placeholder="Your email" aria-label="Email for newsletter">
+            <button type="submit" class="footer__newsletter-btn">Join</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; 2024 Luxe Voyages. All rights reserved.</p>
+        <ul class="footer__bottom-links">
+          <li><a href="privacy-policy.html" class="footer__bottom-link">Privacy</a></li>
+          <li><a href="terms-conditions.html" class="footer__bottom-link">Terms</a></li>
+          <li><a href="sitemap.html" class="footer__bottom-link">Sitemap</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button id="back-to-top" class="btn btn--icon btn--primary" aria-label="Back to top" style="position:fixed;bottom:var(--space-6);inset-inline-end:var(--space-6);z-index:var(--z-sticky);opacity:0;visibility:hidden;transition:all var(--transition-base);box-shadow:var(--shadow-lg);">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+  <style>#back-to-top.visible{opacity:1;visibility:visible;}</style>
+
+  <!-- Scripts -->
+  <script src="js/bundle.js" defer></script>
+</body>
+</html>

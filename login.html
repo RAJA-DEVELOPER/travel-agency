@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sign in to your Luxe Voyages account to manage bookings, itineraries, and travel documents.">
+  <title>Login — Luxe Voyages</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css"><link rel="stylesheet" href="css/base.css"><link rel="stylesheet" href="css/layout.css"><link rel="stylesheet" href="css/components.css"><link rel="stylesheet" href="css/animations.css"><link rel="stylesheet" href="css/dark-mode.css"><link rel="stylesheet" href="css/rtl.css">
+  <style>
+    body{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;}
+    @media(max-width:900px){body{grid-template-columns:1fr;}}
+    .auth-visual{background-image: url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1000&q=85');position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:var(--space-10);}
+    @media(max-width:900px){.auth-visual{display:none;}}
+    .auth-visual__logo{position:absolute;top:var(--space-8);left:var(--space-8);display:flex;align-items:center;gap:var(--space-3);text-decoration:none;}
+    .auth-visual__orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.3;}
+    .auth-visual__quote{position:relative;z-index:1;color:#fff;}
+    .auth-visual__quote-text{font-family:var(--font-display);font-size:clamp(1.4rem,2.5vw,2rem);font-style:italic;line-height:1.4;margin-bottom:var(--space-4);}
+    .auth-visual__quote-author{font-size:var(--fs-body-sm);color:rgba(255,255,255,0.6);}
+    .auth-form-panel{display:flex;flex-direction:column;justify-content:center;align-items:center;padding:var(--space-10);background:var(--color-bg-primary);}
+    @media(max-width:640px){.auth-form-panel{padding:var(--space-6) var(--space-5);}}
+    .auth-form-inner{width:100%;max-width:420px;}
+    .auth-logo-mobile{display:none;margin-bottom:var(--space-8);}
+    @media(max-width:900px){.auth-logo-mobile{display:flex;align-items:center;gap:var(--space-3);text-decoration:none;justify-content:center;}}
+    .auth-title{font-family:var(--font-display);font-size:var(--fs-h3);color:var(--color-text-primary);margin-bottom:var(--space-1);}
+    .auth-sub{font-size:var(--fs-body-sm);color:var(--color-text-secondary);margin-bottom:var(--space-8);}
+    .auth-divider{display:flex;align-items:center;gap:var(--space-3);margin:var(--space-5) 0;color:var(--color-text-tertiary);font-size:var(--fs-caption);}
+    .auth-divider::before,.auth-divider::after{content:'';flex:1;height:1px;background:var(--color-border);}
+    .auth-social{display:flex;gap:var(--space-3);}
+    @media(max-width:480px){.auth-social{flex-direction:column;}}
+    .auth-social-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:var(--space-2);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-3);background:var(--color-bg-card);font-size:var(--fs-body-sm);font-weight:500;color:var(--color-text-primary);cursor:pointer;transition:all var(--transition-base);}
+    .auth-social-btn:hover{border-color:var(--color-gold);background:rgba(212,175,55,0.04);}
+    .password-toggle{position:relative;}
+    .password-toggle input{padding-inline-end:44px;}
+    .password-toggle-btn{position:absolute;inset-inline-end:var(--space-3);top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--color-text-tertiary);display:flex;align-items:center;}
+    .auth-themes{position:fixed;top:var(--space-4);inset-inline-end:var(--space-4);display:flex;gap:var(--space-2);}
+  </style>
+</head>
+<body>
+  <!-- Left Visual -->
+  <div class="auth-visual">
+    <a href="index.html" class="auth-visual__logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5" width="32" height="32"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" fill="#D4AF37" stroke="none"/></svg>
+      <div><span style="font-family:var(--font-display);font-size:1.3rem;font-weight:600;color:#fff;">Luxe Voyages</span><div style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);">Luxury Travel</div></div>
+    </a>
+    <!-- Decorative orbs -->
+    <div class="auth-visual__orb" style="width:400px;height:400px;background:var(--color-gold);top:-150px;right:-100px;"></div>
+    <div class="auth-visual__orb" style="width:300px;height:300px;background:#065F46;bottom:100px;left:-80px;"></div>
+    <div class="auth-visual__quote">
+      <p class="auth-visual__quote-text">"The world is a book, and those who do not travel read only one page."</p>
+      <div class="auth-visual__quote-author">— Saint Augustine</div>
+    </div>
+  </div>
+
+  <!-- Right Form Panel -->
+  <div class="auth-form-panel">
+    <div class="auth-themes">
+      <button class="navbar__toggle-btn" data-theme-toggle aria-label="Toggle dark mode"><span class="icon-sun" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span><span class="icon-moon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></span></button>
+      <button class="navbar__toggle-btn" data-rtl-toggle aria-label="Toggle RTL"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18" stroke-linecap="round" stroke-linejoin="round"><text x="12" y="16" text-anchor="middle" fill="currentColor" stroke="none" font-family="system-ui,sans-serif" font-weight="700" font-size="11">RTL</text></svg></button>
+    </div>
+
+    <div class="auth-form-inner">
+      <a href="index.html" class="auth-logo-mobile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-gold)" stroke-width="1.5" width="28" height="28"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" fill="var(--color-gold)" stroke="none"/></svg>
+        <span style="font-family:var(--font-display);font-size:1.2rem;color:var(--color-text-primary);">Luxe Voyages</span>
+      </a>
+      <h1 class="auth-title">Welcome Back</h1>
+      <p class="auth-sub">Sign in to your account to manage your luxury journeys.</p>
+
+      <!-- Social login -->
+      <div class="auth-social">
+        <button class="auth-social-btn" onclick="window.location='index.html'"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>Google</button>
+        <button class="auth-social-btn" onclick="window.location='index.html'"><svg viewBox="0 0 24 24" fill="#1877f2" width="18" height="18"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>Facebook</button>
+      </div>
+
+      <div class="auth-divider">or sign in with email</div>
+
+      <!-- Email form -->
+      <form data-validate id="login-form">
+        <div class="form-group"><label class="form-label" for="login-email">Email Address</label><input type="email" id="login-email" name="email" class="form-input" placeholder="your@email.com" required autocomplete="email"></div>
+        <div class="form-group">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-2);"><label class="form-label" for="login-password" style="margin-bottom:0;">Password</label><a href="#" style="font-size:var(--fs-caption);color:var(--color-text-gold);">Forgot password?</a></div>
+          <div class="password-toggle">
+            <input type="password" id="login-password" name="password" class="form-input" placeholder="Your password" required autocomplete="current-password">
+            <button type="button" class="password-toggle-btn" data-toggle-password aria-label="Show password"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:var(--space-2);margin-bottom:var(--space-5);"><input type="checkbox" id="remember-me"><label for="remember-me" style="font-size:var(--fs-body-sm);color:var(--color-text-secondary);">Keep me signed in</label></div>
+        <button type="submit" class="btn btn--primary btn--lg" style="width:100%;" onclick="setTimeout(()=>window.location='index.html',1500)">Sign In</button>
+      </form>
+
+      <p style="text-align:center;margin-top:var(--space-6);font-size:var(--fs-body-sm);color:var(--color-text-secondary);">Don't have an account? <a href="signup.html" style="color:var(--color-text-gold);font-weight:600;">Create one</a></p>
+      <p style="text-align:center;margin-top:var(--space-3);font-size:var(--fs-caption);color:var(--color-text-tertiary);"><a href="index.html" style="color:var(--color-text-tertiary);">← Back to main site</a></p>
+    </div>
+  </div>
+
+  <script>
+    const saved = localStorage.getItem('luxe-travel-theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', saved || (prefersDark ? 'dark' : 'light'));
+    document.querySelectorAll('[data-theme-toggle]').forEach(btn => {
+      const isDark = () => document.documentElement.getAttribute('data-theme') === 'dark';
+      const sync = () => { btn.querySelector('.icon-sun').style.display = isDark() ? 'block' : 'none'; btn.querySelector('.icon-moon').style.display = isDark() ? 'none' : 'block'; };
+      sync();
+      btn.addEventListener('click', () => { const next = isDark() ? 'light' : 'dark'; document.documentElement.setAttribute('data-theme', next); localStorage.setItem('luxe-travel-theme', next); sync(); });
+    });
+    document.querySelectorAll('[data-toggle-password]').forEach(btn => {
+      btn.addEventListener('click', () => { const input = btn.previousElementSibling; input.type = input.type === 'password' ? 'text' : 'password'; });
+    });
+    const savedDir = localStorage.getItem('luxe-travel-dir');
+    if (savedDir) document.documentElement.setAttribute('dir', savedDir);
+    document.querySelectorAll('[data-rtl-toggle]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('dir') || 'ltr';
+        const next = current === 'rtl' ? 'ltr' : 'rtl';
+        document.documentElement.setAttribute('dir', next);
+        localStorage.setItem('luxe-travel-dir', next);
+      });
+    });
+  </script>
+</body>
+</html>

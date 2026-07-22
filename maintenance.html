@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Luxe Voyages is currently undergoing scheduled maintenance. We'll be back shortly with an even better experience.">
+  <title>Maintenance — Luxe Voyages</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/dark-mode.css">
+  <link rel="stylesheet" href="css/rtl.css">
+  <style>
+    html, body { height: 100%; }
+    body {
+      min-height: 100vh;
+      background: var(--color-midnight);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-6);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Stars background */
+    .stars-bg {
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(212,175,55,0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(6,95,70,0.08) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(139,94,52,0.05) 0%, transparent 60%);
+      z-index: 0;
+    }
+    /* Animated stars */
+    .star-field {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.6);
+      animation: twinkle var(--dur, 3s) ease-in-out infinite;
+      animation-delay: var(--delay, 0s);
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; transform: scale(1); }
+      50%       { opacity: 1;   transform: scale(1.4); }
+    }
+
+    .maintenance-page {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 640px;
+      animation: fadeInUp 1s ease both;
+    }
+
+    .maintenance-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-10);
+      text-decoration: none;
+    }
+    .maintenance-logo__text {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      color: #fff;
+    }
+
+    .maintenance-icon {
+      margin: 0 auto var(--space-6);
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: rgba(212,175,55,0.1);
+      border: 1px solid rgba(212,175,55,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(212,175,55,0.2); }
+      50%       { box-shadow: 0 0 0 24px rgba(212,175,55,0); }
+    }
+
+    .maintenance-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      background: rgba(212,175,55,0.12);
+      border: 1px solid rgba(212,175,55,0.25);
+      border-radius: var(--radius-full);
+      padding: var(--space-2) var(--space-4);
+      font-size: var(--fs-caption);
+      font-weight: 600;
+      color: var(--color-gold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-5);
+    }
+    .maintenance-badge__dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-gold);
+      animation: blink 1.2s ease-in-out infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.2; }
+    }
+
+    .maintenance-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 600;
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: var(--space-4);
+    }
+
+    .maintenance-desc {
+      font-size: var(--fs-body);
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+      margin-bottom: var(--space-10);
+    }
+
+    /* Countdown */
+    .countdown {
+      display: flex;
+      gap: var(--space-6);
+      justify-content: center;
+      margin-bottom: var(--space-10);
+      flex-wrap: wrap;
+    }
+    .countdown-unit {
+      text-align: center;
+      min-width: 72px;
+    }
+    .countdown-unit__value {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      line-height: 1;
+      color: var(--color-gold);
+      display: block;
+      margin-bottom: var(--space-1);
+    }
+    .countdown-unit__label {
+      font-size: var(--fs-caption);
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .countdown-sep {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      color: rgba(212,175,55,0.3);
+      line-height: 1;
+      align-self: center;
+      margin-top: -8px;
+    }
+
+    /* Progress bar */
+    .maintenance-progress {
+      max-width: 400px;
+      margin: 0 auto var(--space-10);
+    }
+    .maintenance-progress__label {
+      display: flex;
+      justify-content: space-between;
+      font-size: var(--fs-caption);
+      color: rgba(255,255,255,0.4);
+      margin-bottom: var(--space-2);
+    }
+    .maintenance-progress__bar {
+      height: 4px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .maintenance-progress__fill {
+      height: 100%;
+      width: 72%;
+      background-color: var(--color-bronze);
+      border-radius: 999px;
+      animation: progressPulse 2s ease-in-out infinite alternate;
+    }
+    @keyframes progressPulse {
+      from { opacity: 0.7; }
+      to   { opacity: 1; }
+    }
+
+    /* Email notify */
+    .notify-form {
+      display: flex;
+      gap: var(--space-2);
+      max-width: 420px;
+      margin: 0 auto var(--space-8);
+    }
+    .notify-input {
+      flex: 1;
+      padding: var(--space-3) var(--space-4);
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: var(--radius-md);
+      color: #fff;
+      font-family: var(--font-ui);
+      font-size: var(--fs-body-sm);
+      outline: none;
+      transition: border-color var(--transition-base);
+    }
+    .notify-input::placeholder { color: rgba(255,255,255,0.35); }
+    .notify-input:focus { border-color: rgba(212,175,55,0.5); }
+
+    .contact-strip {
+      display: flex;
+      gap: var(--space-6);
+      justify-content: center;
+      flex-wrap: wrap;
+      font-size: var(--fs-body-sm);
+      color: rgba(255,255,255,0.4);
+    }
+    .contact-strip a {
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      transition: color var(--transition-base);
+    }
+    .contact-strip a:hover { color: var(--color-gold); }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars-bg"></div>
+
+  <!-- Star field (JS-generated) -->
+  <div class="star-field" id="star-field" aria-hidden="true"></div>
+
+  <div class="maintenance-page" role="main">
+    <!-- Logo -->
+    <a href="index.html" class="maintenance-logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5" width="36" height="36">
+        <circle cx="12" cy="12" r="10"/>
+        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" fill="#D4AF37" stroke="none"/>
+      </svg>
+      <span class="maintenance-logo__text">Luxe Voyages</span>
+    </a>
+
+    <!-- Icon -->
+    <div class="maintenance-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5" width="44" height="44">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/>
+      </svg>
+    </div>
+
+    <div class="maintenance-badge">
+      <div class="maintenance-badge__dot"></div>
+      Scheduled Maintenance
+    </div>
+
+    <h1 class="maintenance-title">Crafting Something Extraordinary</h1>
+    <p class="maintenance-desc">
+      We're polishing every detail to deliver an even more luxurious experience. Our team is working behind the scenes to elevate your journey. We'll be back very shortly.
+    </p>
+
+    <!-- Countdown Timer -->
+    <div class="countdown" id="countdown" aria-label="Time until site returns">
+      <div class="countdown-unit">
+        <span class="countdown-unit__value" data-countdown="hours">08</span>
+        <span class="countdown-unit__label">Hours</span>
+      </div>
+      <div class="countdown-sep" aria-hidden="true">:</div>
+      <div class="countdown-unit">
+        <span class="countdown-unit__value" data-countdown="minutes">45</span>
+        <span class="countdown-unit__label">Minutes</span>
+      </div>
+      <div class="countdown-sep" aria-hidden="true">:</div>
+      <div class="countdown-unit">
+        <span class="countdown-unit__value" data-countdown="seconds">00</span>
+        <span class="countdown-unit__label">Seconds</span>
+      </div>
+    </div>
+
+    <!-- Progress -->
+    <div class="maintenance-progress">
+      <div class="maintenance-progress__label">
+        <span>Restoration Progress</span>
+        <span style="color:var(--color-gold);font-weight:600;">72%</span>
+      </div>
+      <div class="maintenance-progress__bar">
+        <div class="maintenance-progress__fill"></div>
+      </div>
+    </div>
+
+    <!-- Notify Form -->
+    <p style="font-size:var(--fs-body-sm);color:rgba(255,255,255,0.5);margin-bottom:var(--space-4);">Notify me when we're back</p>
+    <div class="notify-form">
+      <input type="email" class="notify-input" placeholder="your@email.com" aria-label="Email for notification">
+      <button class="btn btn--primary" onclick="this.textContent='✓ Subscribed';this.style.background='var(--color-emerald)'">Notify Me</button>
+    </div>
+
+    <!-- Contact strip -->
+    <div class="contact-strip">
+      <a href="mailto:hello@luxevoyages.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        hello@luxevoyages.com
+      </a>
+      <a href="tel:+18005551234">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        +1 (800) 555-1234
+      </a>
+      <a href="#" aria-label="Twitter">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        @luxevoyages
+      </a>
+    </div>
+  </div>
+
+  <script>
+    // Theme init
+    const saved = localStorage.getItem('luxe-travel-theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', saved || (prefersDark ? 'dark' : 'light'));
+
+    // Star field generation
+    const field = document.getElementById('star-field');
+    for (let i = 0; i < 80; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.cssText = `
+        left: ${Math.random() * 100}%;
+        top: ${Math.random() * 100}%;
+        --dur: ${2 + Math.random() * 4}s;
+        --delay: ${Math.random() * 4}s;
+        opacity: ${0.2 + Math.random() * 0.5};
+        width: ${Math.random() > 0.8 ? 3 : 2}px;
+        height: ${Math.random() > 0.8 ? 3 : 2}px;
+      `;
+      field.appendChild(star);
+    }
+
+    // Countdown timer (set to 8 hours 45 minutes from now)
+    const target = new Date();
+    target.setHours(target.getHours() + 8);
+    target.setMinutes(target.getMinutes() + 45);
+
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = Math.max(0, target - now);
+      const h = Math.floor(diff / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+
+      const el = document.querySelector('[data-countdown="hours"]');
+      const em = document.querySelector('[data-countdown="minutes"]');
+      const es = document.querySelector('[data-countdown="seconds"]');
+
+      if (el) el.textContent = pad(h);
+      if (em) em.textContent = pad(m);
+      if (es) es.textContent = pad(s);
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
