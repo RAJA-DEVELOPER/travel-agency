@@ -4,6 +4,7 @@
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Read the latest luxury travel stories, destination guides, and expert tips from the Luxe Voyages travel journal.">
   <title>Travel Blog — Luxe Voyages</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/variables.css"><link rel="stylesheet" href="css/base.css"><link rel="stylesheet" href="css/layout.css"><link rel="stylesheet" href="css/components.css"><link rel="stylesheet" href="css/animations.css"><link rel="stylesheet" href="css/navbar.css"><link rel="stylesheet" href="css/hero.css"><link rel="stylesheet" href="css/footer.css"><link rel="stylesheet" href="css/dark-mode.css"><link rel="stylesheet" href="css/rtl.css"><link rel="stylesheet" href="css/pages.css">
@@ -192,5 +193,23 @@
 
 <button id="back-to-top" class="btn btn--icon btn--primary" aria-label="Back to top" style="position:fixed;bottom:var(--space-6);inset-inline-end:var(--space-6);z-index:var(--z-sticky);opacity:0;visibility:hidden;transition:all var(--transition-base);box-shadow:var(--shadow-lg);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><polyline points="18 15 12 9 6 15"/></svg></button><style>#back-to-top.visible{opacity:1;visibility:visible;}</style>
   <script src="js/bundle.js" defer></script>
+  <script>
+    (function() {
+      const filterBtns = document.querySelectorAll('.blog-filters .tag');
+      const cards = document.querySelectorAll('#blog-grid .card');
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          const filter = this.textContent.trim();
+          cards.forEach(card => {
+            const cat = card.querySelector('.blog-card__category');
+            if (!cat) return;
+            card.style.display = filter === 'All' || cat.textContent.trim() === filter ? '' : 'none';
+          });
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
